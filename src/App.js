@@ -9,7 +9,11 @@ import Button from 'react-bootstrap/Button';
 import MenuTopBar from './MenuTopBar';
 import MenuLateral from './MenuLateral';
 import {Card, Collapse } from 'react-bootstrap';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faIgloo, faPenAlt, faBook } from '@fortawesome/free-solid-svg-icons'
 
+library.add(faIgloo, faPenAlt, faBook)
 
 class App extends Component {
   constructor(props){
@@ -39,13 +43,13 @@ class App extends Component {
       // </div>
       <div>
       <MenuTopBar />
-      <Container className="mt-5 pt-2">
+      <Container className="container-fluid">
       <Row>
           <Col xs={4} md = {3} lg={2}>            
-            <MenuLateral>Menu</MenuLateral>
+            <MenuLateral>ClassMan</MenuLateral>
           </Col>
           <Col >
-            <div className="mt-3">            
+            <div className="main">            
               Contenido
               <Button
                 onClick={() => this.setState({ open: !open })}

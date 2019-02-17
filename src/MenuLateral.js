@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Nav, NavDropdown, Collapse, Button, Card, ListGroup } from 'react-bootstrap';
+import { Nav, NavDropdown, Navbar, Button, Card, ListGroup } from 'react-bootstrap';
 import SubMenuLateral from './SubMenuLateral';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class MenuLateral extends Component{
     constructor (prop){
@@ -9,47 +10,31 @@ class MenuLateral extends Component{
     
     render(){
         return(
-          <div className="bg-dark mb-5 text-light menu-lateral-wrapper">      
-            <Nav defaultActiveKey="/home" className="flex-column">
-
-                <h4>{this.props.children}</h4>
-                <Nav.Link eventKey="link-1">Link</Nav.Link>
-                <Nav.Link eventKey="link-2">Link</Nav.Link>
-                <Nav.Link eventKey="disabled" disabled>
-                Disabled
-                </Nav.Link>
-        
-                <NavDropdown title="Dropdown" id="nav-dropdown">
-                <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-                <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item eventKey="4.3">
-                    Something else here
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
-                </NavDropdown>
-
+          <div className="d-md-block bg-light sidebar mt-1">
+            <div className="sidebar-sticky">
+            <Nav defaultActiveKey="/home" className="flex-column">                               
                 <SubMenuLateral
-                    title="Click">
-                        <ListGroup.Item action variant="light" href="#link1">
-                        Link 1
-                        </ListGroup.Item>
-                        <ListGroup.Item action variant="light" href="#link2">
-                        Link 2
-                        </ListGroup.Item>
-                        <ListGroup.Item action>This one is a button</ListGroup.Item>
+                    title="Estructuras"
+                    icon="pen-alt">
+                    <Nav.Link href="/home">Ciclo</Nav.Link>
+                    <Nav.Link>Carrera</Nav.Link>
+                    <Nav.Link>Pensum</Nav.Link>
+                    <Nav.Link>Materia</Nav.Link>                   
+                    <Nav.Link>Horario</Nav.Link>                   
+                    <Nav.Link>Profesor</Nav.Link>                   
+                    <Nav.Link>Aula</Nav.Link>                   
+                    <Nav.Link>Cuatrimestre</Nav.Link>                                       
                 </SubMenuLateral>  
 
                 <SubMenuLateral
-                    title="Hola">
-                    <ListGroup.Item action variant="light" href="#link1">
-                        Link 1
-                        </ListGroup.Item>
-                        <ListGroup.Item action variant="light" href="#link2">
-                        Link 2
-                        </ListGroup.Item>                        
+                    title="Cuatrimestre"
+                    icon="book">
+                    <Nav.Link href="/home">Cuatrimestre</Nav.Link>
+                    <Nav.Link>Clases</Nav.Link>
+                    <Nav.Link>Calendario</Nav.Link>                    
                 </SubMenuLateral>                                               
             </Nav>
+            </div>     
           </div>
         );
       };

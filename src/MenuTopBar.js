@@ -8,7 +8,7 @@ class MenuTopBar extends Component{
 
     render(){
         return(        
-            <Navbar bg="dark" expand="lg" variant="dark" className="fixed-top">                
+            <Navbar bg="dark" expand="lg" variant="dark" className="fixed-top shadow flex-md-nowrap ">                
                 <Navbar.Brand href="#home">ClassMan</Navbar.Brand>
                 {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

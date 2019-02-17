@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Nav, NavDropdown, Collapse, Button, Card, ListGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class SubMenuLateral extends Component{
     constructor (prop){
@@ -11,7 +12,7 @@ class SubMenuLateral extends Component{
     
     render(){
         const { open } = this.state;
-        const { title } = this.props;
+        const { title, icon } = this.props;
         
         return(
             <div>
@@ -19,18 +20,17 @@ class SubMenuLateral extends Component{
                     onClick={() => this.setState({ open: !open })}
                     aria-controls="example-collapse-text"
                     aria-expanded={open}
-                    variant = "outline-light"
+                    variant="link"
                     block={true}
-                    className="rounded-0"
-                    size="sm"
-                >
-                    {title}
+                    className="border-bottom border-top text-secondary"
+                    size="lg">
+                    <FontAwesomeIcon icon={icon} /> {title}
                 </Button>
                 
                 <Collapse in={this.state.open} id="example-collapse-text">   
-                    <ListGroup defaultActiveKey="#link1" variant='flush'>
-                        {this.props.children}
-                    </ListGroup>                           
+                    <div>
+                        {this.props.children}                                                
+                    </div>
                 </Collapse>                                                 
             </div>
         );
