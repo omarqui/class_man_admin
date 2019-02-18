@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -9,11 +8,15 @@ import Button from 'react-bootstrap/Button';
 import MenuTopBar from './MenuTopBar';
 import MenuLateral from './MenuLateral';
 import {Card, Collapse } from 'react-bootstrap';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIgloo, faPenAlt, faBook } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faIgloo, faPenAlt, faBook, faHourglassHalf, 
+         faAngleDown, faAngleUp, faPlus, faPencilAlt,
+         faTrash } from '@fortawesome/free-solid-svg-icons';
+import MaestroGenerico from './MaestroGenerico';
 
-library.add(faIgloo, faPenAlt, faBook)
+library.add(faIgloo, faPenAlt, faBook, faHourglassHalf, 
+            faAngleDown, faAngleUp, faPlus, faPencilAlt,
+            faTrash);
 
 class App extends Component {
   constructor(props){
@@ -25,53 +28,15 @@ class App extends Component {
   render() {
     const { open } = this.state;
     return (
-      // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <p>
-      //       Edit <code>src/App.js</code> and save to refresh. 
-      //     </p>
-      //     <a
-      //       className="App-link"
-      //       href="https://reactjs.org"
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //     >
-      //       Learn React
-      //     </a>
-      //   </header>
-      // </div>
       <div>
       <MenuTopBar />
       <Container className="container-fluid">
       <Row>
           <Col xs={4} md = {3} lg={2}>            
-            <MenuLateral>ClassMan</MenuLateral>
+            <MenuLateral />
           </Col>
           <Col >
-            <div className="main">            
-              Contenido
-              <Button
-                onClick={() => this.setState({ open: !open })}
-                aria-controls="example-collapse-text"
-                aria-expanded={open}
-              >
-                click
-              </Button>
-              <Collapse in={this.state.open} id="example-collapse-text">
-                <div>
-                  <Card >
-                    <Card.Body>
-                      <Card.Text>
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>                
-                </div>   
-              </Collapse>
-            </div>          
+            <MaestroGenerico />     
           </Col>          
       </Row>  
       </Container>    

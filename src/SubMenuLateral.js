@@ -12,8 +12,9 @@ class SubMenuLateral extends Component{
     
     render(){
         const { open } = this.state;
-        const { title, icon } = this.props;
-        
+        const { title, icon } = this.props;        
+        const flechaIcon = open? 'angle-up' : 'angle-down';
+
         return(
             <div>
                 <Button
@@ -22,13 +23,16 @@ class SubMenuLateral extends Component{
                     aria-expanded={open}
                     variant="link"
                     block={true}
-                    className="border-bottom border-top text-secondary"
+                    className="text-left border-bottom border-top text-secondary"
                     size="lg">
-                    <FontAwesomeIcon icon={icon} /> {title}
+                    <FontAwesomeIcon icon={icon} /> {title} 
+                    <FontAwesomeIcon 
+                        icon={flechaIcon} 
+                        className="ml-4 pr-0 mr-0 d-inline  text-right"/>
                 </Button>
                 
                 <Collapse in={this.state.open} id="example-collapse-text">   
-                    <div>
+                    <div className="ml-4">
                         {this.props.children}                                                
                     </div>
                 </Collapse>                                                 

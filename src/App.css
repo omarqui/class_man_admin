@@ -17,7 +17,7 @@
 }
 
 .main{
-  padding-top: 48px;
+  margin-top: 60px;
 }
 
 .sidebar-sticky{
@@ -27,4 +27,12 @@
   padding-top: .5rem;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.panel{
+  height: 500px;
+}
+
+.sub_panel{
+  height: 370px;
 }

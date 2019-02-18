@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class MenuTopBar extends Component{
     constructor(props){
@@ -8,8 +9,10 @@ class MenuTopBar extends Component{
 
     render(){
         return(        
-            <Navbar bg="dark" expand="lg" variant="dark" className="fixed-top shadow flex-md-nowrap ">                
-                <Navbar.Brand href="#home">ClassMan</Navbar.Brand>
+            <Navbar bg="dark" expand="lg" variant="dark" className="fixed-top shadow-sm flex-md-nowrap ">                
+                <Navbar.Brand href="#home">
+                    <FontAwesomeIcon icon="hourglass-half" /> ClassMan
+                </Navbar.Brand>
                 {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
