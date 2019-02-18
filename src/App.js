@@ -11,12 +11,12 @@ import {Card, Collapse } from 'react-bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faIgloo, faPenAlt, faBook, faHourglassHalf, 
          faAngleDown, faAngleUp, faPlus, faPencilAlt,
-         faTrash } from '@fortawesome/free-solid-svg-icons';
+         faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import MaestroGenerico from './MaestroGenerico';
 
 library.add(faIgloo, faPenAlt, faBook, faHourglassHalf, 
             faAngleDown, faAngleUp, faPlus, faPencilAlt,
-            faTrash);
+            faTrash, faSearch);
 
 class App extends Component {
   constructor(props){

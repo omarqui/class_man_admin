@@ -15,12 +15,12 @@ class PanelDetalleCompact extends Component{
             <div className="border-bottom">
                 <h5 className="d-inline">{titulo}</h5>
                 <span  className="ml-2">
-                    <ButtonToolTip msg = "Eliminar" variant="outline-danger" className="ml-2">
+                    <ButtonToolTip esTitulo={true} msg = "Eliminar" variant="outline-danger" className="ml-2">
                         <FontAwesomeIcon icon="trash" />
                     </ButtonToolTip>
                 </span>
                 
-                <ButtonToolTip msg = "Editar" variant="outline-warning">
+                <ButtonToolTip esTitulo={true} msg = "Editar" variant="outline-warning">
                     <FontAwesomeIcon icon="pencil-alt" />
                 </ButtonToolTip>
             </div>

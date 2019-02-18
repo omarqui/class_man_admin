@@ -36,3 +36,9 @@
 .sub_panel{
   height: 370px;
 }
+
+.list-group{
+  max-height: 280px; 
+  margin-bottom: 10px;
+  overflow-y:scroll;
+}
