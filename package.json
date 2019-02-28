@@ -28,6 +28,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "jshint": "^2.10.1"
+    
   }
 }
