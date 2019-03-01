@@ -12,7 +12,7 @@ class PanelListaCompact extends Component{
     }
 
     render(){
-        const { titulo, nuevoHandler, estado } = this.props;
+        const { titulo, nuevoHandler, estado, buscarHandler } = this.props;
         const esModoConsulta = (estado === CONSULTANDO);
 
         return(
@@ -34,6 +34,7 @@ class PanelListaCompact extends Component{
                   aria-label="Buscar"
                   aria-describedby="basic-addon2"
                   disabled = {!esModoConsulta}
+                  onChange = { buscarHandler }
                 />
                 <InputGroup.Append>
                     <ButtonToolTip 

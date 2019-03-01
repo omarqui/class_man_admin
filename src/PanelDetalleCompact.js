@@ -14,8 +14,8 @@ class PanelDetalleCompact extends Component{
     }
 
     render(){
-        const { titulo, editarHandler, estado, prueba } = this.props;
-
+        const { titulo, editarHandler, estado, isItemSelected } = this.props;
+        
         return(
         <div className="border rounded p-3 h-100">
             <div className="border-bottom">
@@ -26,7 +26,7 @@ class PanelDetalleCompact extends Component{
                     </ButtonToolTip>
                 </span>
                 
-                <ButtonToolTip hidden={estado !== CONSULTANDO} esTitulo={true} msg = "Editar" variant="outline-warning" clickHandler = {editarHandler} >
+                <ButtonToolTip hidden={estado !== CONSULTANDO || !isItemSelected} esTitulo={true} msg = "Editar" variant="outline-warning" clickHandler = {editarHandler} >
                     <FontAwesomeIcon icon="pencil-alt" />
                 </ButtonToolTip>
             </div>
@@ -42,7 +42,7 @@ PanelDetalleCompact.propTypes = {
     editarHandler: PropTypes.func,
     children: PropTypes.element,
     estado: PropTypes.number,
-    prueba: PropTypes.string.isRequired
+    isItemSelected: PropTypes.bool
 };
 
 export default PanelDetalleCompact;

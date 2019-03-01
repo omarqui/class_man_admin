@@ -36,6 +36,7 @@ class MaestroGenerico extends Component{
         this.cancelar = this.cancelar.bind(this);
         this.guardar = this.guardar.bind(this);
         this.onTextChanged = this.onTextChanged.bind(this);
+        this.buscar = this.buscar.bind(this);
     }
 
     seleccionarItem(item){      
@@ -91,6 +92,16 @@ class MaestroGenerico extends Component{
       };      
     }
 
+    buscar(event){
+                  
+      const busqueda = event.target.value.toLowerCase();
+      const newData = datos.filter(i=>i.descripcion.toLowerCase().includes(busqueda));
+
+      this.setState({
+        data: newData
+      });
+    }
+
     onTextChanged(event, field){
         const newSeleted = {...this.state.selected, [field]: event.target.value};
         this.setState({
@@ -107,7 +118,11 @@ class MaestroGenerico extends Component{
             <h6 className="text-center mb-5">({estado[0].toUpperCase() + estado.substr(1).toLowerCase()})</h6>
             <Row>
               <Col xs={6} md={5} lg={4}>
-                <PanelListaCompact titulo="Lista" nuevoHandler={this.nuevo} estado={estado}>                  
+                <PanelListaCompact 
+                    titulo="Lista" 
+                    nuevoHandler={this.nuevo} 
+                    estado={estado}
+                    buscarHandler={this.buscar}>
                   <ListGroup className="list_group" >
                     {data.map(i => {
                        return <ListGroup.Item 
@@ -124,7 +139,7 @@ class MaestroGenerico extends Component{
                 </PanelListaCompact>
               </Col>
               <Col>
-                <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado}>
+                <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado} isItemSelected={selected !== null}>
                     {selected &&
                       <>
                         {selected.id && 
