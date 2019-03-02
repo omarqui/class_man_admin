@@ -13,6 +13,7 @@ import { faIgloo, faPenAlt, faBook, faHourglassHalf,
          faTrash, faSearch, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import MaestroGenerico from '../MaestroGenerico';
 import MaestroProfesor from '../MaestroProfesor';
+import MaestroMateria from '../MaestroMateria';
 
 library.add(faIgloo, faPenAlt, faBook, faHourglassHalf, 
             faAngleDown, faAngleUp, faPlus, faPencilAlt,
@@ -35,7 +36,7 @@ class App extends Component {
             <MenuLateral />
           </Col>
           <Col >
-            <MaestroProfesor />     
+            <MaestroMateria />     
           </Col>          
       </Row>  
       </Container>    

@@ -48,9 +48,7 @@ class MaestroProfesor extends Component{
     getFormDetail(itemSelected, onTextChanged, guardar, cancelar, esModoConsulta){
         return(
             <div>
-            {itemSelected &&
-                <>
-                  {itemSelected.id && 
+                {itemSelected.id && 
                     <Row>
                         <Col md={3}>
                             <Form.Group controlId="formBasicEmail">
@@ -59,37 +57,35 @@ class MaestroProfesor extends Component{
                             </Form.Group>
                         </Col>
                     </Row>
-                  }
+                }
 
-                  <Form.Group controlId="formBasicPassword">
-                      <Form.Label>Descripción</Form.Label>
-                      <Form.Control 
-                        type="Text" 
-                        placeholder="Nombre" 
-                        disabled = { esModoConsulta } 
-                        value={itemSelected.nombre}
-                        onChange={(e)=>onTextChanged(e,"nombre")}/>
-                  </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Descripción</Form.Label>
+                    <Form.Control 
+                    type="Text" 
+                    placeholder="Nombre" 
+                    disabled = { esModoConsulta } 
+                    value={itemSelected.nombre}
+                    onChange={(e)=>onTextChanged(e,"nombre")}/>
+                </Form.Group>
 
-                  <Button 
-                      style={{float: "right"}} 
-                      variant="primary" 
-                      type="submit" 
-                      className="ml-2"
-                      disabled={ esModoConsulta }
-                      onClick={guardar(itemSelected)}>                   
-                      <FontAwesomeIcon icon="save" /> Guardar
-                  </Button>
-                  <Button 
-                      style={{float: "right"}} 
-                      variant="danger" 
-                      type="submit" 
-                      hidden={ esModoConsulta }
-                      onClick={ cancelar }>                   
-                      <FontAwesomeIcon icon="times" /> Cancelar
-                  </Button>
-                </>
-              }
+                <Button 
+                    style={{float: "right"}} 
+                    variant="primary" 
+                    type="submit" 
+                    className="ml-2"
+                    disabled={ esModoConsulta }
+                    onClick={guardar(itemSelected)}>                   
+                    <FontAwesomeIcon icon="save" /> Guardar
+                </Button>
+                <Button 
+                    style={{float: "right"}} 
+                    variant="danger" 
+                    type="submit" 
+                    hidden={ esModoConsulta }
+                    onClick={ cancelar }>                   
+                    <FontAwesomeIcon icon="times" /> Cancelar
+                </Button>                
               </div>
         );
     }
@@ -102,9 +98,7 @@ class MaestroProfesor extends Component{
                 getNewObject = { this.getNewProfesorObject }
                 getFilterCondicion = { this.filterProfesor }
                 getListItem = { this.getListItem }
-                getFormDetail = { this.getFormDetail }>
-
-            </MaestroGenerico>
+                getFormDetail = { this.getFormDetail }/>
         );
     }
 }

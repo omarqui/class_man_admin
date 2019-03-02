@@ -129,6 +129,8 @@ class MaestroGenerico extends Component{
               <Col>
                 <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado} isItemSelected={selected !== null}>
                     {
+                      selected &&
+                        
                       getFormDetail(selected, this.onTextChanged, this.guardar, this.cancelar, estado === CONSULTANDO)
                     }
                 </PanelDetalleCompact>
