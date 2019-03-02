@@ -3,33 +3,19 @@ import { Form, Button, ListGroup, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PanelListaCompact from './PanelListaCompact';
 import PanelDetalleCompact from './PanelDetalleCompact';
-import estados from './constants';
+import estados from '../constants';
 import { Maestro } from './Maestro';
 
 const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
 
-const datos = [
-  {
-    id: 1,
-    descripcion: "Aula 404"
-  },
-  {
-    id: 2,
-    descripcion: "Aula 248"
-  },
-  {
-    id: 3,
-    descripcion: "Aula 782"
-  }
-];
 let lastSelect = null;
 
-class MaestroCiclo extends Component{
+class MaestroGenerico extends Component{
     constructor (prop){
         super(prop);
         
         this.state = {
-          data: datos,
+          data: prop.data,
           selected: null,
           estado: CONSULTANDO
         };
@@ -55,7 +41,7 @@ class MaestroCiclo extends Component{
     }
 
     nuevo(){
-      const newItem = { id: null, descripcion: "" };      
+      const newItem = this.props.getNewObject();      
 
       this.setState({
         selected: newItem,
@@ -97,7 +83,7 @@ class MaestroCiclo extends Component{
 
     buscar(event){                  
       const busqueda = event.target.value.toLowerCase();
-      const newData = datos.filter(i=>i.descripcion.toLowerCase().includes(busqueda));
+      const newData = this.props.data.filter(this.props.getFilterCondicion(busqueda));
 
       this.setState({
         data: newData
@@ -113,9 +99,10 @@ class MaestroCiclo extends Component{
      
     render(){
         const { data, selected, estado } = this.state;        
+        const { getListItem, titulo, getFormDetail } = this.props;
 
         return(
-          <Maestro titulo="Ciclos" estado={estado} >
+          <Maestro titulo={titulo} estado={estado} >
             <Row>
               <Col xs={6} md={5} lg={4}>
                 <PanelListaCompact 
@@ -131,8 +118,9 @@ class MaestroCiclo extends Component{
                                   onDoubleClick={this.editar}
                                   disabled={estado !== CONSULTANDO}
                                   key={i.id}>
-                                <p className="m-0"><strong>{i.descripcion}</strong></p>
-                                <small >{i.id}</small>
+                                {
+                                  getListItem(i)
+                                }
                               </ListGroup.Item>;
                     })}                                        
                   </ListGroup>
@@ -140,47 +128,8 @@ class MaestroCiclo extends Component{
               </Col>
               <Col>
                 <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado} isItemSelected={selected !== null}>
-                    {selected &&
-                      <>
-                        {selected.id && 
-                          <Row>
-                              <Col md={3}>
-                                  <Form.Group controlId="formBasicEmail">
-                                      <Form.Label>Codigo</Form.Label>
-                                      <Form.Control type="email" placeholder="Codigo" disabled value={selected.id} />
-                                  </Form.Group>
-                              </Col>
-                          </Row>
-                        }
-
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Descripción</Form.Label>
-                            <Form.Control 
-                              type="Text" 
-                              placeholder="Descripcion" 
-                              disabled = {estado === CONSULTANDO} 
-                              value={selected.descripcion}
-                              onChange={(e)=>this.onTextChanged(e,"descripcion")}/>
-                        </Form.Group>
-
-                        <Button 
-                            style={{float: "right"}} 
-                            variant="primary" 
-                            type="submit" 
-                            className="ml-2"
-                            disabled={ estado === CONSULTANDO }
-                            onClick={this.guardar(selected)}>                   
-                            <FontAwesomeIcon icon="save" /> Guardar
-                        </Button>
-                        <Button 
-                            style={{float: "right"}} 
-                            variant="danger" 
-                            type="submit" 
-                            hidden={ estado === CONSULTANDO }
-                            onClick={this.cancelar}>                   
-                            <FontAwesomeIcon icon="times" /> Cancelar
-                        </Button>
-                      </>
+                    {
+                      getFormDetail(selected, this.onTextChanged, this.guardar, this.cancelar, estado === CONSULTANDO)
                     }
                 </PanelDetalleCompact>
               </Col>
@@ -191,4 +140,4 @@ class MaestroCiclo extends Component{
 }
 
 
-export default MaestroCiclo;
+export default MaestroGenerico;

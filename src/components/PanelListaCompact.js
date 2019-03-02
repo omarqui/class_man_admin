@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonToolTip } from './ButtonToolTip';
 import { InputGroup, FormControl, Button, ListGroup } from 'react-bootstrap';
-import estados from './constants';
+import estados from '../constants';
 
 const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
 

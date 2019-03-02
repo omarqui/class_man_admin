@@ -29,16 +29,16 @@
   overflow-y: auto;
 }
 
-.panel{
+/* .panel{
   height: 500px;
-}
+} */
 
-.sub_panel{
+/* .sub_panel{
   height: 370px;
-}
+} */
 
 .list-group{
-  max-height: 280px; 
+  max-height: 300px; 
   margin-bottom: 10px;
   overflow-y:scroll;
 }
