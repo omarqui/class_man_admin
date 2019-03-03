@@ -14,10 +14,7 @@ import { faIgloo, faPenAlt, faBook, faHourglassHalf,
 import MaestroCiclo from '../MaestroCiclo';
 import MaestroProfesor from '../MaestroProfesor';
 import MaestroMateria from '../MaestroMateria';
-
-const MAESTRO_MATERIA = 1;
-const MAESTRO_PROFESOR = 2;
-const MAESTRO_CICLO = 3;
+import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO } from "../../constants/forms";
 
 library.add(faIgloo, faPenAlt, faBook, faHourglassHalf, 
             faAngleDown, faAngleUp, faPlus, faPencilAlt,
@@ -30,31 +27,37 @@ class App extends Component {
       open: true,
       formActivo:  1
     };
+
+    this.cambiarForm = this.cambiarForm.bind(this);
   }
 
   cambiarForm(form){
     this.setState({
-      formActivo: form
+      formActivo: parseInt(form)
     });
   }
 
-  render() {
-    let formActivo;
+  getForm(){
+    let form;
 
     switch (this.state.formActivo) {
       case MAESTRO_MATERIA:
-        formActivo = <MaestroMateria />;
+        form = <MaestroMateria />;
         break;
       case MAESTRO_PROFESOR:
-        formActivo = <MaestroProfesor />;
+        form = <MaestroProfesor />;
         break;
       case MAESTRO_CICLO:
-        formActivo = <MaestroCiclo />;
+        form = <MaestroCiclo />;
         break;
-    
       default:
         break;
     }
+    return form;
+  }
+
+  render() {
+    const form = this.getForm();
 
     return (
       <div>
@@ -66,7 +69,7 @@ class App extends Component {
               </Col>
               <Col >
                 {
-                  formActivo
+                  form
                 }                
               </Col>          
           </Row>  
