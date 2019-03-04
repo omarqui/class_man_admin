@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class MenuTopBar extends Component{
@@ -9,10 +9,45 @@ class MenuTopBar extends Component{
 
     render(){
         return(        
-            <Navbar bg="dark" expand="lg" variant="dark" className="fixed-top shadow-sm flex-md-nowrap ">                
-                <Navbar.Brand href="#home">
-                    <FontAwesomeIcon icon="hourglass-half" /> ClassMan
-                </Navbar.Brand>
+            <Navbar 
+                bg="dark" 
+                expand="lg" 
+                variant="dark" 
+                className="fixed-top shadow-sm flex-md-nowrap "
+                style={{                    
+                    paddingLeft: 0,
+                    paddingRight: 0
+                }}>                
+                <div style={{
+                    width: "100%",
+                    display: "grid",
+                    gridTemplateColumns: "1fr 3fr 1fr",                    
+                    padding: "0 1rem"
+                }}>
+                    <div style={{   
+                      alignSelf: "center"
+                    }}>                        
+                        <Navbar.Brand href="#home">
+                            <FontAwesomeIcon icon="hourglass-half" /> ClassMan
+                        </Navbar.Brand></div>
+                    <div style={{
+                      background: "red",                      
+                      justifySelf: "center",
+                      alignSelf: "center"
+                    }}>
+                        <div>
+                            Hola
+                        </div>
+                        <div>
+                            adios
+                        </div>  
+                    </div>
+                    <div style={{                      
+                      justifySelf: "end",
+                      alignSelf: "center"
+                    }}>usuario</div>
+                </div>
+                
                 {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { OverlayTrigger, Tooltip, Button } from 'react-bootstrap';
 
-export const ButtonToolTip = props => {
+const ButtonToolTip = props => {
     const { msg, variant, esTitulo, clickHandler, hidden, disabled } = props;
     const mClass = esTitulo ? "ml-1 mt-n3" : "", 
           mSize = esTitulo ? "sm" : "md" ;
@@ -27,3 +27,5 @@ export const ButtonToolTip = props => {
         </OverlayTrigger>
     </span>);
 };
+
+export default ButtonToolTip;
