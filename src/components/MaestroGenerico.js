@@ -103,14 +103,36 @@ class MaestroGenerico extends Component{
 
         return(
           <Maestro titulo={titulo} estado={estado} >
-            <Row>
-              <Col xs={6} md={5} lg={4}>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "40% 60%",
+              gridGap: "1rem",
+              marginRight: "1rem" 
+            }}>
+              {/* <div>a</div>
+              <div>b</div> */}
+            {/* <Row>
+              <Col xs={6} md={5} lg={4}> */}
                 <PanelListaCompact 
                     titulo="Lista" 
                     nuevoHandler={this.nuevo} 
                     estado={estado}
                     buscarHandler={this.buscar}>
-                  <ListGroup className="list_group" >
+                    <div style={{
+                      display : "grid",
+                      gridTemplateRows: "100%",
+                      height: "80%",   
+                      // backgroundColor: "yellow",
+                      // padding: "3px",
+                    }}>
+                  <ListGroup 
+                    style={{
+                      // height: "100%",
+                      // backgroundColor: "blue",
+                      //  marginBottom: "1rem"
+                      // border: "1px solid #dee2e6"
+                    }} 
+                    className="border radius list_group" >
                     {data.map(i => {
                        return <ListGroup.Item 
                                   action href={"#link"+i.id} 
@@ -124,9 +146,10 @@ class MaestroGenerico extends Component{
                               </ListGroup.Item>;
                     })}                                        
                   </ListGroup>
+                  </div>
                 </PanelListaCompact>
-              </Col>
-              <Col>
+              {/* </Col>
+              <Col> */}
                 <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado} isItemSelected={selected !== null}>
                     {
                       selected &&
@@ -134,8 +157,9 @@ class MaestroGenerico extends Component{
                       getFormDetail(selected, this.onTextChanged, this.guardar, this.cancelar, estado === CONSULTANDO)
                     }
                 </PanelDetalleCompact>
-              </Col>
-            </Row>
+              {/* </Col>
+            </Row> */}
+            </div>
           </Maestro>
         );
     }

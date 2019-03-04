@@ -17,7 +17,7 @@
 }
 
 .main{
-  margin-top: 60px;
+  margin-top: 65px;
 }
 
 .sidebar-sticky{
@@ -38,7 +38,7 @@
 } */
 
 .list-group{
-  max-height: 300px; 
-  margin-bottom: 10px;
+  max-height: 419px; 
+  /* margin-bottom: 1rem; */
   overflow-y:scroll;
 }

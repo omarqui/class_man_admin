@@ -25,7 +25,7 @@ class App extends Component {
     super(props);
     this.state = {
       open: true,
-      formActivo:  1
+      formActivo:  MAESTRO_MATERIA
     };
 
     this.cambiarForm = this.cambiarForm.bind(this);
@@ -64,12 +64,12 @@ class App extends Component {
         <MenuTopBar />
         <Container className="container-fluid">
           <Row>
-              <Col xs={4} md = {3} lg={2}>            
+              <Col xs={2} md = {3} lg={2}>            
                 <MenuLateral clickHandler = { this.cambiarForm }/>
               </Col>
               <Col >
                 {
-                  form
+                  form 
                 }                
               </Col>          
           </Row>  

@@ -18,7 +18,7 @@ class MenuTopBar extends Component{
                     paddingLeft: 0,
                     paddingRight: 0
                 }}>                
-                <div style={{
+                <div className="text-light" style={{
                     width: "100%",
                     display: "grid",
                     gridTemplateColumns: "1fr 3fr 1fr",                    
@@ -30,8 +30,7 @@ class MenuTopBar extends Component{
                         <Navbar.Brand href="#home">
                             <FontAwesomeIcon icon="hourglass-half" /> ClassMan
                         </Navbar.Brand></div>
-                    <div style={{
-                      background: "red",                      
+                    <div style={{                     
                       justifySelf: "center",
                       alignSelf: "center"
                     }}>
