@@ -16,7 +16,7 @@ class MaestroGenerico extends Component{
         
         this.state = {
           data: prop.data,
-          selected: null,
+          selected: prop.data[0],
           estado: CONSULTANDO
         };
 
@@ -100,7 +100,7 @@ class MaestroGenerico extends Component{
     render(){
         const { data, selected, estado } = this.state;        
         const { getListItem, titulo, getFormDetail } = this.props;
-
+        
         return(
           <Maestro titulo={titulo} estado={estado} >
             <div style={{
@@ -135,11 +135,13 @@ class MaestroGenerico extends Component{
                     className="border radius list_group" >
                     {data.map(i => {
                        return <ListGroup.Item 
-                                  action href={"#link"+i.id} 
+                                  className={i===selected ? "active" : ""}
+                                  // action href={"#link"+i.id} 
                                   onClick={this.seleccionarItem(i)}
                                   onDoubleClick={this.editar}
                                   disabled={estado !== CONSULTANDO}
                                   key={i.id}>
+                                  
                                 {
                                   getListItem(i)
                                 }
@@ -152,7 +154,7 @@ class MaestroGenerico extends Component{
               <Col> */}
                 <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado} isItemSelected={selected !== null}>
                     {
-                      selected &&
+                      (selected || estado === CREANDO) &&
                         
                       getFormDetail(selected, this.onTextChanged, this.guardar, this.cancelar, estado === CONSULTANDO)
                     }

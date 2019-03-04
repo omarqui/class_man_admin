@@ -36,8 +36,8 @@ class MaestroMateria extends Component{
         const newMateria = {
             id: null,
             codigo: "",
-            nombre: "Prueba",
-            cantCreditos: 2,
+            nombre: "",
+            cantCreditos: 0,
             urlProgramaClase: ""
         };
 
