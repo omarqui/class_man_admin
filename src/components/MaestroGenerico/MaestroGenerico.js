@@ -1,14 +1,15 @@
+import "./style.css";
 import React, { Component } from 'react';
 import { Form, Button, ListGroup, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PanelListaCompact from './PanelListaCompact';
 import PanelDetalleCompact from './PanelDetalleCompact';
-import estados from '../constants';
+import estados from '../../constants';
 import { Maestro } from './Maestro';
-
 const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
 
-let lastSelect = null;
+
+// let lastSelect = null;
 
 class MaestroGenerico extends Component{
     constructor (prop){
@@ -28,15 +29,14 @@ class MaestroGenerico extends Component{
         this.buscar = this.buscar.bind(this);
     }
 
-    seleccionarItem(item){      
-      return () => {
-        console.log(item);
-        lastSelect = item;
+    seleccionarItem(item){  
 
-        this.setState({
+      return () => {        
+        this.setState((prevState, props)=>({
           selected: item,
-          estado: CONSULTANDO
-        });        
+          estado: CONSULTANDO,
+          lastSelect: prevState.selected
+        }));        
       };
     }
 
@@ -56,10 +56,10 @@ class MaestroGenerico extends Component{
     }
 
     cancelar(){
-      this.setState({
+      this.setState((prevState,props)=>({
         estado: CONSULTANDO,
-        selected: lastSelect
-      });
+        selected: prevState.lastSelect
+      }));
     }
 
     guardar(item){
@@ -103,40 +103,19 @@ class MaestroGenerico extends Component{
         
         return(
           <Maestro titulo={titulo} estado={estado} >
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "40% 60%",
-              gridGap: "1rem",
-              marginRight: "1rem" 
-            }}>
-              {/* <div>a</div>
-              <div>b</div> */}
-            {/* <Row>
-              <Col xs={6} md={5} lg={4}> */}
+            <div className="maestro-container">
                 <PanelListaCompact 
                     titulo="Lista" 
                     nuevoHandler={this.nuevo} 
                     estado={estado}
                     buscarHandler={this.buscar}>
-                    <div style={{
-                      display : "grid",
-                      gridTemplateRows: "100%",
-                      height: "80%",   
-                      // backgroundColor: "yellow",
-                      // padding: "3px",
-                    }}>
+                    <div 
+                      className="panel-lista-compact">
                   <ListGroup 
-                    style={{
-                      // height: "100%",
-                      // backgroundColor: "blue",
-                      //  marginBottom: "1rem"
-                      // border: "1px solid #dee2e6"
-                    }} 
                     className="border radius list_group" >
                     {data.map(i => {
                        return <ListGroup.Item 
-                                  className={i===selected ? "active" : ""}
-                                  // action href={"#link"+i.id} 
+                                  className={i ===selected ? "active" : ""}
                                   onClick={this.seleccionarItem(i)}
                                   onDoubleClick={this.editar}
                                   disabled={estado !== CONSULTANDO}
@@ -150,17 +129,28 @@ class MaestroGenerico extends Component{
                   </ListGroup>
                   </div>
                 </PanelListaCompact>
-              {/* </Col>
-              <Col> */}
                 <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado} isItemSelected={selected !== null}>
                     {
                       (selected || estado === CREANDO) &&
                         
-                      getFormDetail(selected, this.onTextChanged, this.guardar, this.cancelar, estado === CONSULTANDO)
+                      getFormDetail(selected, this.onTextChanged, estado === CONSULTANDO)
                     }
+
+                    <Button            
+                        variant="primary"               
+                        className="ml-2 button-float"
+                        disabled={ estado === CONSULTANDO }
+                        onClick={this.guardar(selected)}>                   
+                        <FontAwesomeIcon icon="save" /> Guardar
+                    </Button>
+                    <Button 
+                        className="button-float"
+                        variant="danger"    
+                        hidden={ estado === CONSULTANDO }
+                        onClick={ this.cancelar }>                   
+                        <FontAwesomeIcon icon="times" /> Cancelar
+                    </Button> 
                 </PanelDetalleCompact>
-              {/* </Col>
-            </Row> */}
             </div>
           </Maestro>
         );

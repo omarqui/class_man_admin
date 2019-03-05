@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Nav } from 'react-bootstrap';
 import SubMenuLateral from './SubMenuLateral';
-import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO } from "../constants/forms";
+import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO } from "../../constants/forms";
 
 class MenuLateral extends Component{
     constructor (prop){

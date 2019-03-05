@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Button, ListGroup, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PanelListaCompact from './PanelListaCompact';
-import PanelDetalleCompact from './PanelDetalleCompact';
-import estados from '../constants';
-import { Maestro } from './Maestro';
+import PanelListaCompact from '../MaestroGenerico/PanelListaCompact';
+import PanelDetalleCompact from '../MaestroGenerico/PanelDetalleCompact';
+import estados from '../../constants';
+import { Maestro } from '../MaestroGenerico/Maestro';
 
 const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
 

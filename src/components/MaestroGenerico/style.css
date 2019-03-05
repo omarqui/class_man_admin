@@ -1,0 +1,16 @@
+.maestro-container{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-gap: 1rem;
+    margin-right: 1rem;
+}
+
+.panel-lista-compact{
+    display : grid;
+    grid-template-rows: 100%;
+    height: 80%;
+}
+
+.button-float{
+    float: right;
+}

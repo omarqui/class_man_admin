@@ -1,3 +1,4 @@
+import "./styles.css";
 import React, { Component } from 'react';
 import { Navbar, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,47 +14,23 @@ class MenuTopBar extends Component{
                 bg="dark" 
                 expand="lg" 
                 variant="dark" 
-                className="fixed-top shadow-sm flex-md-nowrap "
-                style={{                    
-                    paddingLeft: 0,
-                    paddingRight: 0
-                }}>                
-                <div className="text-light" style={{
-                    width: "100%",
-                    display: "grid",
-                    gridTemplateColumns: "1fr 3fr 1fr",                    
-                    padding: "0 1rem"
-                }}>
-                    <div style={{   
-                      alignSelf: "center"
-                    }}>                        
+                className="fixed-top  shadow-sm flex-md-nowrap ">                
+                <div className="text-light menu-top-bar" >
+                    <div className="align-self-center">                        
                         <Navbar.Brand href="#home">
                             <FontAwesomeIcon icon="hourglass-half" /> ClassMan
                         </Navbar.Brand></div>
-                    <div style={{                     
-                      justifySelf: "center",
-                      alignSelf: "center",
-                      alignItems: "center"
-                    }}>
-                        <h5
-                            style={{
-                                margin: 0
-                            }}
-                        >
+                    <div>
+                        <h5 className="m-0 text-center">
                             Enero - Abril
                         </h5>
-                        <div
-                            style = {{
-                                textAlign:"center"
-                            }}
-                        >
+                        <div className="text-center">
                             Cuatrimestre
                         </div>  
                     </div>
-                    <div style={{                      
-                      justifySelf: "end",
-                      alignSelf: "center"
-                    }}>usuario</div>
+                    <div className="text-right align-self-center">
+                        usuario
+                    </div>
                 </div>
                 
                 {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />

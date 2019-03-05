@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MaestroGenerico from './MaestroGenerico';
+import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -57,7 +57,7 @@ class MaestroMateria extends Component{
         );
     }
 
-    getFormDetail(itemSelected, onTextChanged, guardar, cancelar, esModoConsulta){
+    getFormDetail(itemSelected, onTextChanged, esModoConsulta){
         return(
             <div>
                 {itemSelected.id && 
@@ -112,29 +112,7 @@ class MaestroMateria extends Component{
                             onChange={(e)=>onTextChanged(e,"urlProgramaClase")}
                             width = "20px"
                             />                
-                </Form.Group>
-                    
-                
-                <div className="mb-5">
-                    <Button 
-                        style={{float: "right"}} 
-                        variant="primary" 
-                        type="submit" 
-                        className="ml-2"
-                        disabled={ esModoConsulta }
-                        onClick={guardar(itemSelected)}>                   
-                        <FontAwesomeIcon icon="save" /> Guardar
-                    </Button>
-                    <Button 
-                        style={{float: "right"}} 
-                        variant="danger" 
-                        type="submit" 
-                        hidden={ esModoConsulta }
-                        onClick={ cancelar }>                   
-                        <FontAwesomeIcon icon="times" /> Cancelar
-                    </Button>      
-                </div>
-                          
+                </Form.Group>                                              
               </div>
         );
     }

@@ -5,15 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import MenuTopBar from '../MenuTopBar';
-import MenuLateral from '../MenuLateral';
+import MenuTopBar from '../Menus/MenuTopBar';
+import MenuLateral from '../Menus/MenuLateral';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faIgloo, faPenAlt, faBook, faHourglassHalf, 
          faAngleDown, faAngleUp, faPlus, faPencilAlt,
          faTrash, faSearch, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';         
-import MaestroCiclo from '../MaestroCiclo';
-import MaestroProfesor from '../MaestroProfesor';
-import MaestroMateria from '../MaestroMateria';
+import MaestroCiclo from '../Maestros/MaestroCiclo';
+import MaestroProfesor from '../Maestros/MaestroProfesor';
+import MaestroMateria from '../Maestros/MaestroMateria';
 import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO } from "../../constants/forms";
 
 library.add(faIgloo, faPenAlt, faBook, faHourglassHalf, 

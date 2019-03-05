@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MaestroGenerico from './MaestroGenerico';
+import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -45,7 +45,7 @@ class MaestroProfesor extends Component{
         );
     }
 
-    getFormDetail(itemSelected, onTextChanged, guardar, cancelar, esModoConsulta){
+    getFormDetail(itemSelected, onTextChanged, esModoConsulta){
         return(
             <div>
                 {itemSelected.id && 
@@ -68,24 +68,6 @@ class MaestroProfesor extends Component{
                     value={itemSelected.nombre}
                     onChange={(e)=>onTextChanged(e,"nombre")}/>
                 </Form.Group>
-
-                <Button 
-                    style={{float: "right"}} 
-                    variant="primary" 
-                    type="submit" 
-                    className="ml-2"
-                    disabled={ esModoConsulta }
-                    onClick={guardar(itemSelected)}>                   
-                    <FontAwesomeIcon icon="save" /> Guardar
-                </Button>
-                <Button 
-                    style={{float: "right"}} 
-                    variant="danger" 
-                    type="submit" 
-                    hidden={ esModoConsulta }
-                    onClick={ cancelar }>                   
-                    <FontAwesomeIcon icon="times" /> Cancelar
-                </Button>                
               </div>
         );
     }
@@ -98,7 +80,8 @@ class MaestroProfesor extends Component{
                 getNewObject = { this.getNewProfesorObject }
                 getFilterCondicion = { this.filterProfesor }
                 getListItem = { this.getListItem }
-                getFormDetail = { this.getFormDetail }/>
+                getFormDetail = { this.getFormDetail }
+                guardarHandler = { this.guardar }/>
         );
     }
 }
