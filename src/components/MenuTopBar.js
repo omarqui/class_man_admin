@@ -32,13 +32,22 @@ class MenuTopBar extends Component{
                         </Navbar.Brand></div>
                     <div style={{                     
                       justifySelf: "center",
-                      alignSelf: "center"
+                      alignSelf: "center",
+                      alignItems: "center"
                     }}>
-                        <div>
-                            Hola
-                        </div>
-                        <div>
-                            adios
+                        <h5
+                            style={{
+                                margin: 0
+                            }}
+                        >
+                            Enero - Abril
+                        </h5>
+                        <div
+                            style = {{
+                                textAlign:"center"
+                            }}
+                        >
+                            Cuatrimestre
                         </div>  
                     </div>
                     <div style={{                      

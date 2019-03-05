@@ -62,7 +62,7 @@ class MaestroMateria extends Component{
             <div>
                 {itemSelected.id && 
                     <Row>
-                        <Col md={3}>
+                        <Col xs={12} md={6} lg={5} xl={4}>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Codigo</Form.Label>
                                 <Form.Control 
