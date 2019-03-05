@@ -11,10 +11,10 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faIgloo, faPenAlt, faBook, faHourglassHalf, 
          faAngleDown, faAngleUp, faPlus, faPencilAlt,
          faTrash, faSearch, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';         
-import MaestroCiclo from '../Maestros/MaestroCiclo';
-import MaestroProfesor from '../Maestros/MaestroProfesor';
-import MaestroMateria from '../Maestros/MaestroMateria';
-import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO } from "../../constants/forms";
+import { MaestroProfesor, MaestroMateria, MaestroCiclo,
+         MaestroCarrera } from '../Maestros/';
+import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO,
+         MAESTRO_CARRERA } from "../../constants/forms";
 
 library.add(faIgloo, faPenAlt, faBook, faHourglassHalf, 
             faAngleDown, faAngleUp, faPlus, faPencilAlt,
@@ -49,6 +49,9 @@ class App extends Component {
         break;
       case MAESTRO_CICLO:
         form = <MaestroCiclo />;
+        break;
+      case MAESTRO_CARRERA:
+        form = <MaestroCarrera />;
         break;
       default:
         break;

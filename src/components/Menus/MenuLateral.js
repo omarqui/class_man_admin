@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Nav } from 'react-bootstrap';
 import SubMenuLateral from './SubMenuLateral';
-import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO } from "../../constants/forms";
+import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO,
+         MAESTRO_CARRERA} from "../../constants/forms";
 
 class MenuLateral extends Component{
     constructor (prop){
@@ -23,11 +24,11 @@ class MenuLateral extends Component{
                     icon="pen-alt"
                     selectHandler = { clickHandler }>
                     <Nav.Link eventKey = {MAESTRO_CICLO}>Ciclo</Nav.Link>
-                    <Nav.Link>Carrera</Nav.Link>
+                    <Nav.Link eventKey = {MAESTRO_CARRERA}>Carrera</Nav.Link>
                     <Nav.Link>Pensum</Nav.Link>
                     <Nav.Link eventKey = {MAESTRO_MATERIA}>Materia</Nav.Link>                   
                     <Nav.Link>Horario</Nav.Link>                   
-                    <Nav.Link eventKey ={MAESTRO_PROFESOR}>Profesor</Nav.Link>                   
+                    <Nav.Link eventKey = {MAESTRO_PROFESOR}>Profesor</Nav.Link>                   
                     <Nav.Link>Aula</Nav.Link>                   
                     <Nav.Link>Cuatrimestre</Nav.Link>                                       
                 </SubMenuLateral>  
