@@ -25,7 +25,7 @@ class App extends Component {
     super(props);
     this.state = {
       open: true,
-      formActivo:  MAESTRO_MATERIA
+      formActivo:  MAESTRO_CARRERA
     };
 
     this.cambiarForm = this.cambiarForm.bind(this);

@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
 import { Form, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Select from 'react-select';
+
+const optionsProfesores = [
+    { value: 1, label: 'Robizon Inoa' },
+    { value: 2, label: 'Fernando Peralta' },
+    { value: 3, label: 'Simon Perez' }
+  ];
 
 const datos = [
     {
@@ -44,12 +51,12 @@ class MaestroCarrera extends Component{
         return(
             <div>
                 <p className="m-0"><strong>{i.nombre}</strong></p>
-                <small >{i.id}</small>
+                <small >{optionsProfesores.find((p)=>p.value === i.idProfesorGuia).label }</small>
             </div>            
         );
     }
 
-    getFormDetail(itemSelected, onTextChanged, esModoConsulta){
+    getFormDetail(itemSelected, onTextChanged, onSelectChanged, esModoConsulta){
         return(
             <div>
                 {itemSelected.id && 
@@ -71,6 +78,15 @@ class MaestroCarrera extends Component{
                     disabled = { esModoConsulta } 
                     value={itemSelected.nombre}
                     onChange={(e)=>onTextChanged(e,"nombre")}/>
+                </Form.Group>
+
+                <Form.Group controlId="formSelect">
+                    <Form.Label>Profesor</Form.Label>
+                    <Select 
+                        value={optionsProfesores.find((p)=>p.value === itemSelected.idProfesorGuia)} 
+                        options={optionsProfesores} 
+                        isDisabled = { esModoConsulta } 
+                        onChange = { (o)=>onSelectChanged(o, "idProfesorGuia")  }/>
                 </Form.Group>
               </div>
         );

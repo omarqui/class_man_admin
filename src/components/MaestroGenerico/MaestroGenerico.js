@@ -26,6 +26,7 @@ class MaestroGenerico extends Component{
         this.cancelar = this.cancelar.bind(this);
         this.guardar = this.guardar.bind(this);
         this.onTextChanged = this.onTextChanged.bind(this);
+        this.onSelectChanged = this.onSelectChanged.bind(this);
         this.buscar = this.buscar.bind(this);
     }
 
@@ -96,6 +97,13 @@ class MaestroGenerico extends Component{
           selected: newSeleted
         });      
     }
+
+    onSelectChanged(optionSelected, field){
+      const newSeleted = {...this.state.selected, [field]: optionSelected.value};
+      this.setState({
+        selected: newSeleted
+      });  
+    }
      
     render(){
         const { data, selected, estado } = this.state;        
@@ -133,7 +141,7 @@ class MaestroGenerico extends Component{
                     {
                       (selected || estado === CREANDO) &&
                         
-                      getFormDetail(selected, this.onTextChanged, estado === CONSULTANDO)
+                      getFormDetail(selected, this.onTextChanged, this.onSelectChanged, estado === CONSULTANDO)
                     }
 
                     <Button            
