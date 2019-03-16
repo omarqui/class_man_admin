@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
 import { Form, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Select from 'react-select';
 
 const optionsProfesores = [
