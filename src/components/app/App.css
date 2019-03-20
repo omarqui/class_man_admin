@@ -1,3 +1,9 @@
+@media screen and (max-width: 894px) {
+  .submenu_lateral > button, .submenu_lateral  {
+    font-size: 0.99rem;
+  }
+}
+
 .menu-lateral-wrapper {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 180px; /* Set the width of the sidebar */

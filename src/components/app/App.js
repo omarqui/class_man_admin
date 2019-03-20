@@ -68,12 +68,15 @@ class App extends Component {
     return (
       <div>
         <MenuTopBar />
-        <Container className="container-fluid">
+        <Container className="container-fluid" >
           <Row>
-              <Col xs={2} md = {3} lg={2}>            
+              <Col className="d-none d-md-block" md={2} >            
                 <MenuLateral clickHandler = { this.cambiarForm }/>
               </Col>
-              <Col >
+              <Col className="d-none d-sm-block d-md-none" sm={1} >            
+                <MenuLateral clickHandler = { this.cambiarForm } esMini/>
+              </Col>
+              <Col sm={11} md={10} >
                 {
                   form 
                 }                

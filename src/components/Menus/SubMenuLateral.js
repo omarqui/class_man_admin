@@ -12,11 +12,11 @@ class SubMenuLateral extends Component{
     
     render(){
         const { open } = this.state;
-        const { title, icon } = this.props;        
+        const { title, icon, esMini } = this.props;        
         const flechaIcon = open? 'angle-up' : 'angle-down';
 
         return(
-            <div>
+            <div className="submenu_lateral">
                 <Button
                     onClick={() => this.setState({ open: !open })}
                     aria-controls="example-collapse-text"
@@ -32,7 +32,7 @@ class SubMenuLateral extends Component{
                 </Button>
                 
                 <Collapse in={this.state.open} id="example-collapse-text">   
-                    <div className="ml-4">
+                    <div className={esMini? "":"ml-4"}>
                         {this.props.children}                                                
                     </div>
                 </Collapse>                                                 
