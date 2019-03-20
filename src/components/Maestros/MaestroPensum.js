@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
-import { Form, Row, Col, Card, Button } from 'react-bootstrap';
+import { Form, Row, Col, Card, Button, Table } from 'react-bootstrap';
 import Select from 'react-select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ButtonToolTip from '../common/ButtonToolTip';
 
 const optionsCarreras = [
     { 
@@ -221,6 +223,8 @@ class MaestroPensum extends Component{
         );
     }
 
+
+
     getFormDetail(itemSelected, onTextChanged, onSelectChanged, esModoConsulta){
         return(
             
@@ -254,17 +258,19 @@ class MaestroPensum extends Component{
                     value={itemSelected.cantCiclos}
                     onChange={(e)=>onTextChanged(e,"nombre")}/>
                 </Form.Group>
-
-                <Card>
-                    <Card.Header>Ciclos 1</Card.Header>
-                    <Card.Body>
-                        <Card.Title>Special title treatment</Card.Title>
-                        <Card.Text>
-                        With supporting text below as a natural lead-in to additional content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                </Card>;
+                
+                {
+                    itemSelected.ciclos.map((ciclo,id) => {
+                        return (
+                            <Ciclo 
+                                numero = {ciclo.posicion}
+                                materias = {ciclo.materias}
+                                key = {id}
+                                /> 
+                        );
+                    })
+                }
+                
               </div>
         );
     }
@@ -281,5 +287,56 @@ class MaestroPensum extends Component{
         );
     }
 }
+
+const Ciclo = (props)=>{
+    const { numero, materias } = props;
+    return(
+        <Card className = "mb-3">
+            <div className="mt-4 ml-3 mr-3 mb-0 border-bottom pb-3">
+                <h5 className="d-inline" >Ciclo {numero}</h5>
+                <span  className="ml-2">
+                    <ButtonToolTip esTitulo={true} msg = "Añadir materia" variant="outline-success">
+                        <FontAwesomeIcon icon="plus" />
+                    </ButtonToolTip>
+                </span>
+            </div>   
+            <Card.Body className="pt-0 pl-3 pr-3 pb-2">
+                <CuatrimestreTable 
+                    materias = {materias}/>
+            </Card.Body>
+        </Card>
+    );
+};
+
+const CuatrimestreTable = (props)=>{
+    const { materias } = props;
+    
+    return(
+        <Table hover responsive className="m-0">
+            <thead>
+                <tr>
+                <th>Codigo</th>
+                <th>Materia</th>
+                <th>Creditos</th>
+                <th>Requisito</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    materias.map((m,id)=>{
+                        return(
+                            <tr key={id}>                                
+                                <td>{m.materia.codigo}</td>
+                                <td>{m.materia.nombre}</td>
+                                <td>{m.cantCreditos}</td>
+                                <td>{m.prerequisito.codigo}</td>
+                            </tr>
+                        );
+                    })
+                }                        
+            </tbody>
+        </Table>
+    );
+};
 
 export default MaestroPensum;
