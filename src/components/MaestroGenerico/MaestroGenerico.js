@@ -66,12 +66,15 @@ class MaestroGenerico extends Component{
     guardar(item){
       return ()=>{
         const newData = [ ...this.state.data ];
-        if(this.state.estado === CREANDO)
+        if(this.state.estado === CREANDO){
           newData.push(item);
+          this.props.data.push(item);
+        }          
         else{
           const indice = newData.findIndex(i=>i.id === item.id);
 
           newData[indice] = item;
+          this.props.data[indice] = item;
         }
   
         this.setState({

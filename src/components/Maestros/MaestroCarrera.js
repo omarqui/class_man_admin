@@ -2,34 +2,23 @@ import React, { Component } from 'react';
 import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
 import { Form, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
+import datosFactory from '../../constants/datos';
 
-const optionsProfesores = [
-    { value: 1, label: 'Robizon Inoa' },
-    { value: 2, label: 'Fernando Peralta' },
-    { value: 3, label: 'Simon Perez' }
-  ];
+const datosAll = datosFactory.getInstance();
+let optionsProfesores;
 
-const datos = [
-    {
-      id: 1,
-      nombre: "Ing. Sistema y Computo",
-      idProfesorGuia: 1
-    },
-    {
-      id: 2,
-      nombre: "Educacion Matematica",
-      idProfesorGuia: 1
-    },
-    {
-      id: 3,
-      nombre: "Mercadeo",
-      idProfesorGuia: 2
-    }
-  ];
+const datos = datosAll.carreras;
 
 class MaestroCarrera extends Component{
     constructor(props){
-        super(props);        
+        super(props);      
+        
+        optionsProfesores = datosAll.profesores.map((profesor,key)=>{
+            return {
+                value: profesor.id,
+                label: profesor.nombre
+            };
+        });
     }
 
     getNewCarreraObject(){
@@ -47,10 +36,13 @@ class MaestroCarrera extends Component{
     }
 
     getListItem(i){
+        const temp = optionsProfesores.find((p)=>p.value === i.idProfesorGuia);
+        const mLabel = temp && temp.label;
+
         return(
             <div>
                 <p className="m-0"><strong>{i.nombre}</strong></p>
-                <small >{optionsProfesores.find((p)=>p.value === i.idProfesorGuia).label }</small>
+                <small >{ mLabel }</small>
             </div>            
         );
     }

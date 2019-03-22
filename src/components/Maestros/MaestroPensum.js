@@ -8,43 +8,18 @@ import datosFactory from '../../constants/datos';
 
 let newDatos = datosFactory.getInstance();
 const datos = newDatos.pensums;
-
-const optionsCarreras = [
-    { 
-        value: {
-            id: 1,
-            codigo: "ab2356",
-            nombre: "Ingles 1",
-            cantCreditos: 3,
-            UrlProgramaClase: ""
-        }, 
-        label: 'Ing. Sistema y Computo' 
-    },
-    { 
-        value: {
-            id: 2,
-            codigo: "789456",
-            nombre: "Introduccion Programacion",
-            cantCreditos: 4,
-            urlProgramaClase: ""
-        }, 
-        label: 'Educacion Matematica' 
-    },
-    { 
-        value: {
-            id: 3,
-            codigo: "12346",      
-            nombre: "Prueba",
-            cantCreditos: 2,
-            urlProgramaClase: ""
-        }, 
-        label: 'Mercadeo' 
-    }
-];
+let optionsCarreras;
 
 class MaestroPensum extends Component{
     constructor(props){
-        super(props);        
+        super(props);  
+        
+        optionsCarreras = newDatos.carreras.map((carrera,key)=>{
+            return {
+                value: carrera,
+                label: carrera.nombre
+            };    
+        });
     }
 
     getNewPensumObject(){
@@ -133,6 +108,10 @@ class MaestroPensum extends Component{
                 
               </div>
         );
+    }
+
+    componentWillMount(){
+        
     }
 
     render(){

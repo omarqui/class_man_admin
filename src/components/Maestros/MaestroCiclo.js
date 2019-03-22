@@ -69,17 +69,21 @@ class MaestroCiclo extends Component{
     guardar(item){
       return ()=>{
         const newData = [ ...this.state.data ];
-        if(this.state.estado === CREANDO)
+        if(this.state.estado === CREANDO){
           newData.push(item);
+          datos.push(item);
+        }          
         else{
           const indice = newData.findIndex(i=>i.id === item.id);
 
           newData[indice] = item;
+          datos[indice] = item;
         }
   
         this.setState({
           data: newData
-        });        
+        });           
+
         this.cancelar();
         this.seleccionarItem(item);        
       };      
@@ -103,10 +107,7 @@ class MaestroCiclo extends Component{
      
     render(){
         const { data, selected, estado } = this.state;        
-        datosAll.aulas.push({
-          id: 4,
-          descripcion: "aula hola"
-        });
+
         console.log("Maestro ciclo",datosAll);
         
         return(

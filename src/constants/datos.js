@@ -233,6 +233,7 @@ const materias = [
     return {
         getInstance: ()=>{
             if (instance == null) {
+                console.log("new instance");
                 instance = new SingletonClass();
                 // Hide the constructor so the returned object can't be new'd...
                 instance.constructor = null;
