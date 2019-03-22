@@ -2,30 +2,10 @@ import React, { Component } from 'react';
 import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import datosFactory from '../../constants/datos';
 
-const datos = [
-    {
-      id: 1,
-      codigo: "ab2356",
-      nombre: "Ingles 1",
-      cantCreditos: 3,
-      UrlProgramaClase: ""
-    },
-    {
-      id: 2,
-      codigo: "789456",
-      nombre: "Introduccion Programacion",
-      cantCreditos: 4,
-      urlProgramaClase: ""
-    },
-    {
-      id: 3,
-      codigo: "12346",      
-      nombre: "Prueba",
-      cantCreditos: 2,
-      urlProgramaClase: ""
-    }
-  ];
+const datosAll = datosFactory.getInstance();
+const datos = datosAll.materias;
 
 class MaestroMateria extends Component{
     constructor(props){

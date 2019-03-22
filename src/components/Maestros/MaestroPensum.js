@@ -4,6 +4,10 @@ import { Form, Row, Col, Card, Button, Table, Modal, Container } from 'react-boo
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ButtonToolTip from '../common/ButtonToolTip';
+import datosFactory from '../../constants/datos';
+
+let newDatos = datosFactory.getInstance();
+const datos = newDatos.pensums;
 
 const optionsCarreras = [
     { 
@@ -36,151 +40,7 @@ const optionsCarreras = [
         }, 
         label: 'Mercadeo' 
     }
-  ];
-
-const datos = [
-    {
-      id: 1,
-      carrera: {
-        id: 1,
-        nombre: "Ing. Sistema y Computo",
-        idProfesorGuia: 1
-      },
-      cantCiclos: 12,
-      nota: "version 1",
-      ciclos:[
-          {
-              posicion: 1,
-              materias:[
-                  {
-                    materia: {
-                        id: 1,
-                        codigo: "ab2356",
-                        nombre: "Ingles 1",
-                        cantCreditos: 3,
-                        UrlProgramaClase: ""
-                    },                      
-                    prerequisito: {
-                        id: 2,
-                        codigo: "789456",
-                        nombre: "Introduccion Programacion",
-                        cantCreditos: 4,
-                        urlProgramaClase: ""
-                    },
-                    cantCreditos: 4
-                  },
-                  {
-                    materia: {
-                        id: 2,
-                        codigo: "789456",
-                        nombre: "Introduccion Programacion",
-                        cantCreditos: 4,
-                        urlProgramaClase: ""
-                    },
-                    prerequisito: {
-                        id: 3,
-                        codigo: "12346",      
-                        nombre: "Prueba",
-                        cantCreditos: 2,
-                        urlProgramaClase: ""
-                    },
-                    cantCreditos: 3
-                  },
-                  {
-                    materia: {
-                        id: 3,
-                        codigo: "12346",      
-                        nombre: "Prueba",
-                        cantCreditos: 2,
-                        urlProgramaClase: ""
-                    },
-                    prerequisito: {
-                        id: 2,
-                        codigo: "789456",
-                        nombre: "Introduccion Programacion",
-                        cantCreditos: 4,
-                        urlProgramaClase: ""
-                    },
-                    cantCreditos: 4
-                  }
-              ]
-          },
-          {
-            posicion: 2,
-            materias:[
-                  {
-                    materia: {
-                        id: 2,
-                        codigo: "789456",
-                        nombre: "Introduccion Programacion",
-                        cantCreditos: 4,
-                        urlProgramaClase: ""
-                    },
-                    prerequisito: {
-                        id: 3,
-                        codigo: "12346",      
-                        nombre: "Prueba",
-                        cantCreditos: 2,
-                        urlProgramaClase: ""
-                    },
-                    cantCreditos: 3
-                  },
-                  {
-                    materia: {
-                        id: 3,
-                        codigo: "12346",      
-                        nombre: "Prueba",
-                        cantCreditos: 2,
-                        urlProgramaClase: ""
-                    },
-                    prerequisito: {
-                        id: 2,
-                        codigo: "789456",
-                        nombre: "Introduccion Programacion",
-                        cantCreditos: 4,
-                        urlProgramaClase: ""
-                    },
-                    cantCreditos: 4
-                  }
-            ]
-        }
-      ]
-    },
-    {
-        id: 2,
-        carrera: {
-            id: 2,
-            nombre: "Educacion Matematica",
-            idProfesorGuia: 1
-        },
-        cantCiclos: 10,
-        nota: "",
-        ciclos:[
-            {
-                posicion: 1,
-                materias:[        
-                    {
-                        materia: {
-                            id: 3,
-                            codigo: "12346",      
-                            nombre: "Prueba",
-                            cantCreditos: 2,
-                            urlProgramaClase: ""
-                        },
-                        prerequisito: {
-                            id: 2,
-                            codigo: "789456",
-                            nombre: "Introduccion Programacion",
-                            cantCreditos: 4,
-                            urlProgramaClase: ""
-                        },
-                        cantCreditos: 4
-                    }
-                ]
-            }
-        ]
-      }
-  ];
+];
 
 class MaestroPensum extends Component{
     constructor(props){
@@ -276,7 +136,9 @@ class MaestroPensum extends Component{
     }
 
     render(){
+        console.log("Maestro pensum",newDatos);
         return(
+            
             <MaestroGenerico 
                 titulo = "Pensum" 
                 data = { datos }

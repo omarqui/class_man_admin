@@ -2,21 +2,10 @@ import React, { Component } from 'react';
 import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import datosFactory from '../../constants/datos';
 
-const datos = [
-    {
-      id: 1,
-      nombre: "Robizon Inoa"
-    },
-    {
-      id: 2,
-      nombre: "Fernando Peralta"
-    },
-    {
-      id: 3,
-      nombre: "Simon Perez"
-    }
-  ];
+const datosAll = datosFactory.getInstance();
+const datos = datosAll.profesores;
 
 class MaestroProfesor extends Component{
     constructor(props){

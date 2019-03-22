@@ -5,23 +5,13 @@ import PanelListaCompact from '../MaestroGenerico/PanelListaCompact';
 import PanelDetalleCompact from '../MaestroGenerico/PanelDetalleCompact';
 import estados from '../../constants';
 import { Maestro } from '../MaestroGenerico/Maestro';
+import datosFactory from '../../constants/datos';
 
 const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
 
-const datos = [
-  {
-    id: 1,
-    descripcion: "Aula 404"
-  },
-  {
-    id: 2,
-    descripcion: "Aula 248"
-  },
-  {
-    id: 3,
-    descripcion: "Aula 782"
-  }
-];
+const datosAll = datosFactory.getInstance();
+const datos = datosAll.aulas;
+
 let lastSelect = null;
 
 class MaestroCiclo extends Component{
@@ -113,8 +103,14 @@ class MaestroCiclo extends Component{
      
     render(){
         const { data, selected, estado } = this.state;        
-
+        datosAll.aulas.push({
+          id: 4,
+          descripcion: "aula hola"
+        });
+        console.log("Maestro ciclo",datosAll);
+        
         return(
+
           <Maestro titulo="Ciclos" estado={estado} >
             <Row>
               <Col xs={6} md={5} lg={4}>
