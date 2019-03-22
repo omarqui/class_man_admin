@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
-import { Form, Row, Col, Card, Button, Table } from 'react-bootstrap';
+import { Form, Row, Col, Card, Button, Table, Modal, Container } from 'react-bootstrap';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ButtonToolTip from '../common/ButtonToolTip';
@@ -295,9 +295,7 @@ const Ciclo = (props)=>{
             <div className="mt-4 ml-3 mr-3 mb-0 border-bottom pb-3">
                 <h5 className="d-inline" >Ciclo {numero}</h5>
                 <span  className="ml-2">
-                    <ButtonToolTip esTitulo={true} msg = "Añadir materia" variant="outline-success">
-                        <FontAwesomeIcon icon="plus" />
-                    </ButtonToolTip>
+                    <AddMateriaModal numero = {numero}/>
                 </span>
             </div>   
             <Card.Body className="pt-0 pl-3 pr-3 pb-2">
@@ -337,6 +335,82 @@ const CuatrimestreTable = (props)=>{
             </tbody>
         </Table>
     );
+};
+
+
+const AddMateriaModal = (props)=>{      
+    const [ show, setShow ] = useState(false);
+    const { numero } = props;
+    return (
+    <>  
+        
+        <ButtonToolTip 
+            esTitulo={true} 
+            msg = "Añadir materia" 
+            variant="outline-success"
+            clickHandler={()=>{setShow(true);}}>
+            <FontAwesomeIcon icon="plus" />
+        </ButtonToolTip>
+        
+        <Modal show={show} 
+               onHide={()=>{setShow(false);}}
+               centered>
+            <Modal.Header closeButton>
+                <Modal.Title>Agregando materia a <b>Ciclo {numero}</b></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="formSelect">
+                                <Form.Label>Materia</Form.Label>
+                                <Select 
+                                    // value={ optionsCarreras.find((p)=>p.value.id === itemSelected.carrera.id)} 
+                                    options={optionsCarreras} 
+                                    // isDisabled = { esModoConsulta } 
+                                    // onChange = { (o)=>onSelectChanged(o, "carrera")  }
+                                    />
+                            </Form.Group>
+                        </Col>                        
+                    </Row>
+                    <Row>
+                        <Col sm={7}>
+                            <Form.Group controlId="formSelect">
+                                <Form.Label>Requisito</Form.Label>
+                                <Select 
+                                    // value={ optionsCarreras.find((p)=>p.value.id === itemSelected.carrera.id)} 
+                                    options={optionsCarreras} 
+                                    // isDisabled = { esModoConsulta } 
+                                    // onChange = { (o)=>onSelectChanged(o, "carrera")  }
+                                    />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Cantidad Creditos</Form.Label>
+                                <Form.Control 
+                                type="Text" 
+                                placeholder="Cantidad" 
+                                // disabled = { esModoConsulta } 
+                                // value={itemSelected.cantCiclos}
+                                // onChange={(e)=>onTextChanged(e,"nombre")}
+                                />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                </Container>
+                                
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={()=>{setShow(false);}}>
+                    Cerrar
+                </Button>
+                <Button variant="primary" onClick={()=>{setShow(false);}}>
+                    Agregar
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    </>);   
 };
 
 export default MaestroPensum;
