@@ -8,7 +8,7 @@ import datosFactory from '../../constants/datos';
 
 let newDatos = datosFactory.getInstance();
 const datos = newDatos.pensums;
-let optionsCarreras;
+let optionsCarreras, optionsMateria;
 
 class MaestroPensum extends Component{
     constructor(props){
@@ -19,6 +19,13 @@ class MaestroPensum extends Component{
                 value: carrera,
                 label: carrera.nombre
             };    
+        });
+
+        optionsMateria = newDatos.materias.map((materia)=>{
+            return {
+                value: materia,
+                label: materia.nombre
+            };
         });
     }
 
@@ -207,7 +214,7 @@ const AddMateriaModal = (props)=>{
                                 <Form.Label>Materia</Form.Label>
                                 <Select 
                                     // value={ optionsCarreras.find((p)=>p.value.id === itemSelected.carrera.id)} 
-                                    options={optionsCarreras} 
+                                    options={optionsMateria} 
                                     // isDisabled = { esModoConsulta } 
                                     // onChange = { (o)=>onSelectChanged(o, "carrera")  }
                                     />
@@ -220,7 +227,7 @@ const AddMateriaModal = (props)=>{
                                 <Form.Label>Requisito</Form.Label>
                                 <Select 
                                     // value={ optionsCarreras.find((p)=>p.value.id === itemSelected.carrera.id)} 
-                                    options={optionsCarreras} 
+                                    options={optionsMateria} 
                                     // isDisabled = { esModoConsulta } 
                                     // onChange = { (o)=>onSelectChanged(o, "carrera")  }
                                     />
