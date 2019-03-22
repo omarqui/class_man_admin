@@ -44,10 +44,11 @@ class MaestroGenerico extends Component{
     nuevo(){
       const newItem = this.props.getNewObject();      
 
-      this.setState({
+      this.setState((prevState, props)=>({
         selected: newItem,
-        estado: CREANDO
-      });
+        estado: CREANDO,
+        lastSelect: prevState.selected
+      }));
     }
 
     editar(){
