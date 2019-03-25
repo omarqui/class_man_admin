@@ -4,121 +4,146 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ButtonToolTip from '../common/ButtonToolTip';
 import Select from 'react-select';
 
-function onTextChanged(event, field){
-    const newSeleted = {...this.state.selected, [field]: event.target.value};
-    this.setState({
-      selected: newSeleted
-    });      
-}
-
-
-const AddMateriaModal = (props)=>{      
-    const [ show, setShow ] = useState(false);
-    const [ materiaCiclo, setMateriaCiclo ] = useState({
-        materia: {
-            id: 1,
-            codigo: "ab2356",
-            nombre: "Ingles 1",
-            cantCreditos: 3,
-            UrlProgramaClase: ""
-        },
-        prerequisito: {
-            id: 2,
-            codigo: "789456",
-            nombre: "Introduccion Programacion",
-            cantCreditos: 4,
-            urlProgramaClase: ""
-        },
-        cantCreditos: 5
-    });
-    const { numero, materias } = props;
-
-    const optionsMateria = materias.map((materia)=>{
-        return {
-            value: materia,
-            label: materia.nombre
-        };
-    });
-
-    const onSelectChanged = (optionSelected,field)=>{
-        const newMateriaCiclo = {...materiaCiclo, [field]: optionSelected.value};
-        setMateriaCiclo(newMateriaCiclo);
-    };
-
-    const onTextChanged = (event, field)=>{
-        const newMateriaCiclo = {...materiaCiclo, [field]: event.target.value};
-        setMateriaCiclo(newMateriaCiclo); 
-    };
+let optionsMateria;
+class AddMateriaModal extends Component {
     
-    return (
-    <>          
-        <ButtonToolTip 
-            esTitulo={true} 
-            msg = "Añadir materia" 
-            variant = "outline-success"
-            clickHandler={()=>{setShow(true);}}>
-            <FontAwesomeIcon icon="plus" />
-        </ButtonToolTip>
+    constructor(props){
+        super(props);
+        // const materiaIni = props.materiaSelected === undefined ? {
+        //     materia: {
+        //         id: 1,
+        //         codigo: "ab2356",
+        //         nombre: "Ingles 1",
+        //         cantCreditos: 3,
+        //         UrlProgramaClase: ""
+        //     },
+        //     prerequisito: {
+        //         id: 2,
+        //         codigo: "789456",
+        //         nombre: "Introduccion Programacion",
+        //         cantCreditos: 4,
+        //         urlProgramaClase: ""
+        //     },
+        //     cantCreditos: 5
+        // } : props.materiaSelected;
         
-        <Modal show={show} 
-               onHide={()=>{setShow(false);}}
+        this.state = {
+            materiaCiclo: props.materiaSelected
+        };
+
+        optionsMateria = props.materias.map((materia)=>{
+            return {
+                value: materia,
+                label: materia.nombre
+            };
+        });
+    }
+
+    
+    onSelectChanged (optionSelected,field){
+        const newMateriaCiclo = {...this.materiaCiclo, [field]: optionSelected.value};
+        this.setState({
+            materiaCiclo: newMateriaCiclo
+        });       
+    }
+
+    onTextChanged(event, field){
+        const newMateriaCiclo = {...this.state.materiaCiclo, [field]: event.target.value};
+        this.setState({
+            materiaCiclo: newMateriaCiclo
+        });
+    }
+
+    onSave(){
+        const { ciclo, materias, addHandler, closeHandler } = this.props;
+        addHandler(this.state.materiaCiclo);        
+        closeHandler();
+    }
+
+    componentDidMount(){
+        //if(this.state.materiaCiclo === undefined || this.props.materiaSelected.materia.id !== this.state.materiaCiclo.materia.id)
+            console.log("didMount", this.props.materiaSelected);
+            
+            this.setState({
+                materiaCiclo: this.props.materiaSelected
+            });
+
+    }
+
+    render(){
+
+        const { ciclo, materias, addHandler, closeHandler, showModal, materiaSelected } = this.props;
+        const { materiaCiclo } = this.state;
+
+        console.log("Modal state",    materiaCiclo);
+        console.log("Modal prop",    materiaSelected);
+
+        return(
+        <Modal show={showModal} 
+               onHide={()=>{closeHandler();}}
                centered>
             <Modal.Header closeButton>
-                <Modal.Title>Agregando materia a <b>Ciclo {numero}</b></Modal.Title>
+                <Modal.Title>Agregando materia a <b>Ciclo {ciclo.posicion}</b></Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Container>
-                    <Row>
-                        <Col>
-                            <Form.Group controlId="formSelect">
-                                <Form.Label>Materia</Form.Label>
-                                <Select 
-                                    value={ optionsMateria.find((m)=>m.value.id === materiaCiclo.materia.id)} 
-                                    options={optionsMateria} 
-                                    // isDisabled = { esModoConsulta } 
-                                    onChange = { (o)=>onSelectChanged(o,"materia") }
-                                    />
-                            </Form.Group>
-                        </Col>                        
-                    </Row>
-                    <Row>
-                        <Col sm={7}>
-                            <Form.Group controlId="formSelect">
-                                <Form.Label>Requisito</Form.Label>
-                                <Select 
-                                    value={ optionsMateria.find((m)=>m.value.id === materiaCiclo.prerequisito.id)} 
-                                    options={optionsMateria} 
-                                    // isDisabled = { esModoConsulta } 
-                                    onChange = { (o)=>onSelectChanged(o, "prerequisito")  }
-                                    />
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId="formBasicPassword">
-                                <Form.Label>Cantidad Creditos</Form.Label>
-                                <Form.Control 
-                                type="Text" 
-                                placeholder="Cantidad" 
-                                // disabled = { esModoConsulta } 
-                                value={materiaCiclo.cantCreditos}
-                                onChange={(e)=>onTextChanged(e,"cantCreditos")}
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                </Container>
-                                
-            </Modal.Body>
+            {
+                materiaCiclo &&                 
+                    <Modal.Body>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <Form.Group controlId="formSelect">
+                                        <Form.Label>Materia</Form.Label>
+                                        <Select 
+                                            value={ optionsMateria.find((m)=>m.value.id === materiaCiclo.materia.id)} 
+                                            options={optionsMateria} 
+                                            // isDisabled = { esModoConsulta } 
+                                            onChange = { (o)=>this.onSelectChanged(o,"materia") }
+                                            />
+                                    </Form.Group>
+                                </Col>                        
+                            </Row>
+                            <Row>
+                                <Col sm={7}>
+                                    <Form.Group controlId="formSelect">
+                                        <Form.Label>Requisito</Form.Label>
+                                        <Select 
+                                            value={ optionsMateria.find((m)=>m.value.id === materiaCiclo.prerequisito.id)} 
+                                            options={optionsMateria} 
+                                            // isDisabled = { esModoConsulta } 
+                                            onChange = { (o)=>this.onSelectChanged(o, "prerequisito")  }
+                                            />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group controlId="formBasicPassword">
+                                        <Form.Label>Cantidad Creditos</Form.Label>
+                                        <Form.Control 
+                                        type="Text" 
+                                        placeholder="Cantidad" 
+                                        // disabled = { esModoConsulta } 
+                                        value={materiaCiclo.cantCreditos}
+                                        onChange={(e)=>this.onTextChanged(e,"cantCreditos")}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                        </Container>
+                                        
+                    </Modal.Body>
+                
+            }
+            
             <Modal.Footer>
-                <Button variant="secondary" onClick={()=>{setShow(false);}}>
+                <Button variant="secondary" onClick={()=>{closeHandler();}}>
                     Cerrar
                 </Button>
-                <Button variant="primary" onClick={()=>{setShow(false);}}>
+                <Button variant="primary" onClick={()=>{this.onSave();}}>
                     Agregar
                 </Button>
             </Modal.Footer>
         </Modal>
-    </>);   
-};
+        );
+    }
+}
 
 export default AddMateriaModal;

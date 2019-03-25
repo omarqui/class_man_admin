@@ -99,8 +99,7 @@ class MaestroPensum extends Component{
                     itemSelected.ciclos.map((ciclo,id) => {
                         return (
                             <Ciclo 
-                                numero = {ciclo.posicion}
-                                materias = {ciclo.materias}
+                                ciclo = {ciclo}
                                 materiasAll = {newDatos.materias}
                                 key = {id}
                                 /> 
