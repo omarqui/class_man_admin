@@ -5,6 +5,9 @@ import AddMateriaModal from "./AddMateriaModal";
 import ButtonToolTip from '../common/ButtonToolTip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import estados from '../../constants';
+const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
+
 class Ciclo extends Component {
     constructor(props){
         super(props);        
@@ -13,17 +16,44 @@ class Ciclo extends Component {
         this.state = {
             ciclo: props.ciclo,
             showModal: false,
-            materiaSelected: props.materiaSelected
+            materiaSelected: null,
+            estado: CONSULTANDO
         };
 
         this.abrirHandler = this.abrirHandler.bind(this);
         this.closeHandler = this.closeHandler.bind(this);
         this.editarHandler = this.editarHandler.bind(this);
+        this.onSelectChanged = this.onSelectChanged.bind(this);
+        this.onTextChanged = this.onTextChanged.bind(this);
+        this.addHandler = this.addHandler.bind(this);
+    }
+
+    onSelectChanged (optionSelected,field){
+        const newMateriaCiclo = {...this.state.materiaSelected, [field]: optionSelected.value};
+        console.log("new",optionSelected,field,this.state.materiaSelected, newMateriaCiclo);
+        
+        this.setState({
+            materiaSelected: newMateriaCiclo
+        });       
+    }
+
+    onTextChanged(event, field){
+        const newMateriaCiclo = {...this.state.materiaSelected, [field]: event.target.value};
+        this.setState({
+            materiaSelected: newMateriaCiclo
+        });
     }
 
     addHandler (materia){
-        const newCiclo = { ...this.ciclo};        
-        newCiclo.materias.push(materia);
+        const newCiclo = { ...this.state.ciclo};        
+        if (this.state.estado == CREANDO){
+            newCiclo.materias.push(materia);            
+        }
+        else if (this.state.estado === EDITANDO) {
+            const index = newCiclo.materias.findIndex(m=>m.id === materia.id)
+            newCiclo.materias[index] = materia;
+        }
+
         this.setState({
             ciclo: newCiclo
         });
@@ -34,7 +64,8 @@ class Ciclo extends Component {
 
         this.setState({
             materiaSelected: {...materia},
-            showModal: true
+            showModal: true,
+            estado: EDITANDO
         });
         
 
@@ -47,13 +78,34 @@ class Ciclo extends Component {
 
     closeHandler (){
         this.setState({            
-            showModal: false
+            showModal: false,
+            estado: CONSULTANDO
         });
     }
 
     abrirHandler(){
         this.setState({            
-            showModal: true
+            showModal: true,
+            materiaSelected: 
+            {
+                id:null,
+                materia: {
+                    id: 1,
+                    codigo: "ab2356",
+                    nombre: "Ingles 1",
+                    cantCreditos: 3,
+                    UrlProgramaClase: ""
+                },
+                prerequisito: {
+                    id: 2,
+                    codigo: "789456",
+                    nombre: "Introduccion Programacion",
+                    cantCreditos: 4,
+                    urlProgramaClase: ""
+                },
+                cantCreditos: 5
+            },
+            estado: CREANDO
         });
     }
 
@@ -80,7 +132,9 @@ class Ciclo extends Component {
                             addHandler={this.addHandler} 
                             showModal={showModal} 
                             closeHandler={this.closeHandler} 
-                            materiaSelected={materiaSelected}/>
+                            materiaSelected={materiaSelected}
+                            onTextChanged={this.onTextChanged}
+                            onSelectChanged={this.onSelectChanged}/>
                     </span>
                 </div>   
                 <Card.Body className="pt-0 pl-3 pr-3 pb-2">

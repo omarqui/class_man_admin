@@ -85,6 +85,7 @@ const materias = [
               posicion: 1,
               materias:[
                   {
+                    id:1,
                     materia: {
                         id: 1,
                         codigo: "ab2356",
@@ -102,6 +103,7 @@ const materias = [
                     cantCreditos: 4
                   },
                   {
+                    id:2,
                     materia: {
                         id: 2,
                         codigo: "789456",
@@ -119,6 +121,7 @@ const materias = [
                     cantCreditos: 3
                   },
                   {
+                    id:3,
                     materia: {
                         id: 3,
                         codigo: "12346",      
@@ -141,6 +144,7 @@ const materias = [
             posicion: 2,
             materias:[
                   {
+                    id:1,
                     materia: {
                         id: 2,
                         codigo: "789456",
@@ -158,6 +162,7 @@ const materias = [
                     cantCreditos: 3
                   },
                   {
+                    id:2,
                     materia: {
                         id: 3,
                         codigo: "12346",      
@@ -192,7 +197,8 @@ const materias = [
                 posicion: 1,
                 materias:[        
                     {
-                        materia: {
+                    id:1,
+                    materia: {
                             id: 3,
                             codigo: "12346",      
                             nombre: "Prueba",
