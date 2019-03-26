@@ -40,9 +40,9 @@ class MaestroProfesor extends Component{
                 {itemSelected.id && 
                     <Row>
                         <Col md={3}>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group controlId="formID">
                                 <Form.Label>Codigo</Form.Label>
-                                <Form.Control type="email" placeholder="Codigo" disabled value={itemSelected.id} />
+                                <Form.Control type="text" placeholder="Codigo" disabled value={itemSelected.id} />
                             </Form.Group>
                         </Col>
                     </Row>

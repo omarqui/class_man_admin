@@ -43,10 +43,10 @@ class MaestroMateria extends Component{
                 {itemSelected.id && 
                     <Row>
                         <Col xs={12} md={6} lg={5} xl={4}>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group controlId="formID">
                                 <Form.Label>Codigo</Form.Label>
                                 <Form.Control 
-                                    type="email" 
+                                    type="text" 
                                     placeholder="Codigo" 
                                     disabled = { esModoConsulta } 
                                     value={itemSelected.codigo} 

@@ -142,9 +142,9 @@ class MaestroCiclo extends Component{
                         {selected.id && 
                           <Row>
                               <Col md={3}>
-                                  <Form.Group controlId="formBasicEmail">
+                                  <Form.Group controlId="formID">
                                       <Form.Label>Codigo</Form.Label>
-                                      <Form.Control type="email" placeholder="Codigo" disabled value={selected.id} />
+                                      <Form.Control type="text" placeholder="Codigo" disabled value={selected.id} />
                                   </Form.Group>
                               </Col>
                           </Row>

@@ -29,8 +29,7 @@ class Ciclo extends Component {
     }
 
     onSelectChanged (optionSelected,field){
-        const newMateriaCiclo = {...this.state.materiaSelected, [field]: optionSelected.value};
-        console.log("new",optionSelected,field,this.state.materiaSelected, newMateriaCiclo);
+        const newMateriaCiclo = {...this.state.materiaSelected, [field]: optionSelected.value};        
         
         this.setState({
             materiaSelected: newMateriaCiclo
@@ -50,7 +49,7 @@ class Ciclo extends Component {
             newCiclo.materias.push(materia);            
         }
         else if (this.state.estado === EDITANDO) {
-            const index = newCiclo.materias.findIndex(m=>m.id === materia.id)
+            const index = newCiclo.materias.findIndex(m=>m.id === materia.id);
             newCiclo.materias[index] = materia;
         }
 
@@ -59,14 +58,23 @@ class Ciclo extends Component {
         });
     }
 
-    editarHandler (materia){   
-        console.log("editar",materia);
+    removeHandler(materia){
+        const newCiclo = { ...this.state.ciclo}; 
+        const index = newCiclo.materias.findIndex(m=>m.id === materia.id)
 
+        newCiclo.materias.splice(index,1);
         this.setState({
-            materiaSelected: {...materia},
-            showModal: true,
-            estado: EDITANDO
+            ciclo: newCiclo
         });
+    }
+
+    editarHandler (materia){           
+        if (!this.props.disabled)
+            this.setState({
+                materiaSelected: {...materia},
+                showModal: true,
+                estado: EDITANDO
+            });
         
 
         // const newCiclo = { ...ciclo};
@@ -90,29 +98,28 @@ class Ciclo extends Component {
             {
                 id:null,
                 materia: {
-                    id: 1,
-                    codigo: "ab2356",
-                    nombre: "Ingles 1",
-                    cantCreditos: 3,
-                    UrlProgramaClase: ""
+                    // id: 1,
+                    // codigo: "ab2356",
+                    // nombre: "Ingles 1",
+                    // cantCreditos: 3,
+                    // UrlProgramaClase: ""
                 },
                 prerequisito: {
-                    id: 2,
-                    codigo: "789456",
-                    nombre: "Introduccion Programacion",
-                    cantCreditos: 4,
-                    urlProgramaClase: ""
+                    // id: 2,
+                    // codigo: "789456",
+                    // nombre: "Introduccion Programacion",
+                    // cantCreditos: 4,
+                    // urlProgramaClase: ""
                 },
-                cantCreditos: 5
+                cantCreditos: 0
             },
             estado: CREANDO
         });
     }
 
     render(){
-        const { materiasAll, ciclo } = this.props;        
-        const { materiaSelected, showModal } = this.state;
-        console.log("render",materiaSelected);
+        const { materiasAll, ciclo, disabled } = this.props;        
+        const { materiaSelected, showModal, estado } = this.state;    
         
         return(
             <Card className = "mb-3">
@@ -123,7 +130,8 @@ class Ciclo extends Component {
                             esTitulo={true} 
                             msg = "Añadir materia" 
                             variant = "outline-success"
-                            clickHandler={this.abrirHandler}>
+                            clickHandler={this.abrirHandler}
+                            disabled = {disabled}>
                             <FontAwesomeIcon icon="plus" />
                         </ButtonToolTip>
                         <AddMateriaModal 
@@ -134,12 +142,14 @@ class Ciclo extends Component {
                             closeHandler={this.closeHandler} 
                             materiaSelected={materiaSelected}
                             onTextChanged={this.onTextChanged}
-                            onSelectChanged={this.onSelectChanged}/>
+                            onSelectChanged={this.onSelectChanged}
+                            estado={estado}/>
                     </span>
                 </div>   
                 <Card.Body className="pt-0 pl-3 pr-3 pb-2">
                     <CuatrimestreTable 
-                        materias = {ciclo.materias} editarHandler={this.editarHandler}/>
+                        materias = {ciclo.materias} 
+                        editarHandler={this.editarHandler}/>
                 </Card.Body>
             </Card>
         );

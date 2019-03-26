@@ -3,6 +3,8 @@ import { Form, Row, Col, Card, Button, Table, Modal, Container } from 'react-boo
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ButtonToolTip from '../common/ButtonToolTip';
 import Select from 'react-select';
+import estados from '../../constants';
+const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
 
 let optionsMateria;
 class AddMateriaModal extends Component {
@@ -26,16 +28,17 @@ class AddMateriaModal extends Component {
 
     render(){
 
-        const { ciclo, closeHandler, showModal, materiaSelected } = this.props;
+        const { ciclo, closeHandler, showModal, materiaSelected, estado } = this.props;
 
         let materiaCiclo = materiaSelected;
-
+        const titulo = estado == CREANDO ? "Agregando materia a": "Editando materia de";
+        
         return(
         <Modal show={showModal} 
                onHide={()=>{closeHandler();}}
                centered>
             <Modal.Header closeButton>
-                <Modal.Title>Agregando materia a <b>Ciclo {ciclo.posicion}</b></Modal.Title>
+                <Modal.Title> {titulo} <b>Ciclo {ciclo.posicion}</b></Modal.Title>                
             </Modal.Header>
             {
                 materiaSelected && 
@@ -83,11 +86,15 @@ class AddMateriaModal extends Component {
             </Modal.Body>
             }
             <Modal.Footer>
-                <Button variant="secondary" onClick={()=>{closeHandler();}}>
-                    Cerrar
-                </Button>
+                {
+                    estado == EDITANDO &&
+                    <Button variant="danger" onClick={()=>{closeHandler();}}>
+                        <FontAwesomeIcon icon="trash" /> Eliminar
+                    </Button>
+                }
+                
                 <Button variant="primary" onClick={()=>{this.onSave();}}>
-                    Agregar
+                    <FontAwesomeIcon icon="save" /> Guardar
                 </Button>
             </Modal.Footer>
         </Modal>
