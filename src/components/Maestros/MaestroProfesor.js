@@ -34,7 +34,7 @@ class MaestroProfesor extends Component{
         );
     }
 
-    getFormDetail(itemSelected, onTextChanged, esModoConsulta){
+    getFormDetail(itemSelected, onTextChanged, onSelectChanged, esModoConsulta){
         return(
             <div>
                 {itemSelected.id && 
