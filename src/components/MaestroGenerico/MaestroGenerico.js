@@ -95,11 +95,15 @@ class MaestroGenerico extends Component{
       });
     }
 
-    onTextChanged(event, field){
-        const newSeleted = {...this.state.selected, [field]: event.target.value};
-        this.setState({
-          selected: newSeleted
-        });      
+    onTextChanged(event, field, handler){
+        const value = event.target.value;        
+                    
+        if(handler === undefined){
+          const newSeleted = {...this.state.selected, [field]: value};
+          this.setState({selected: newSeleted}); 
+        }          
+        else 
+          handler(this, field, value);
     }
 
     onSelectChanged(optionSelected, field){

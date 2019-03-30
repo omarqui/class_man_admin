@@ -19,6 +19,7 @@ class MaestroPensum extends Component{
                 label: carrera.nombre
             };    
         });
+
     }
 
     getNewPensumObject(){
@@ -61,7 +62,27 @@ class MaestroPensum extends Component{
         ciclo.materias.push(materia);
     }
 
+    
+
     getFormDetail(itemSelected, onTextChanged, onSelectChanged, esModoConsulta){
+        const agregarCiclos = (thisOrig, field, cant)=>{
+            console.log(thisOrig);
+            console.log(cant);
+            
+            const item = {...thisOrig.state.selected, [field]:cant };
+
+            for (let cicloPosicion = thisOrig.state.selected.ciclos.length + 1; cicloPosicion <= cant ; cicloPosicion++) {            
+                item.ciclos.push({
+                    posicion: cicloPosicion,
+                        materias:[]
+                });
+            }
+    
+            thisOrig.setState({
+                selected : item
+            });
+        };
+
         return(
             
             <div>
@@ -88,11 +109,11 @@ class MaestroPensum extends Component{
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Cantidad Ciclos</Form.Label>
                     <Form.Control 
-                    type="Text" 
-                    placeholder="Cantidad" 
-                    disabled = { esModoConsulta } 
-                    value={itemSelected.cantCiclos}
-                    onChange={(e)=>onTextChanged(e,"nombre")}/>
+                        type="Text" 
+                        placeholder="Cantidad" 
+                        disabled = { esModoConsulta } 
+                        value={itemSelected.cantCiclos}
+                        onChange={(e)=>onTextChanged(e,"cantCiclos",agregarCiclos)} />
                 </Form.Group>
                 
                 {
@@ -112,8 +133,7 @@ class MaestroPensum extends Component{
         );
     }
 
-    render(){
-        console.log("Maestro pensum",newDatos);
+    render(){        
         return(            
             <MaestroGenerico 
                 titulo = "Pensum" 

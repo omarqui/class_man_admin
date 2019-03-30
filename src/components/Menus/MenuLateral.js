@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Nav } from 'react-bootstrap';
 import SubMenuLateral from './SubMenuLateral';
-import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_CICLO,
+import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_AULA,
          MAESTRO_CARRERA, MAESTRO_PENSUM} from "../../constants/forms";
 
 class MenuLateral extends Component{
@@ -17,7 +17,7 @@ class MenuLateral extends Component{
           <div className="d-md-block bg-light sidebar mt-1">
             <div className="sidebar-sticky">
             <Nav 
-              defaultActiveKey={MAESTRO_CICLO} 
+              defaultActiveKey={MAESTRO_AULA} 
               className="flex-column"
               onSelect={formSelect=>clickHandler(formSelect)}>                               
                 <SubMenuLateral
@@ -25,14 +25,14 @@ class MenuLateral extends Component{
                     icon="pen-alt"
                     selectHandler = { clickHandler }
                     esMini={esMini}>
-                    <Nav.Link className={classItem} eventKey = {MAESTRO_CICLO}>Ciclo</Nav.Link>
+                    {/* <Nav.Link className={classItem} eventKey = {MAESTRO_AULA}>Ciclo</Nav.Link> */}
                     <Nav.Link className={classItem} eventKey = {MAESTRO_CARRERA}>Carrera</Nav.Link>
                     <Nav.Link className={classItem} eventKey = {MAESTRO_PENSUM}>Pensum</Nav.Link>
                     <Nav.Link className={classItem} eventKey = {MAESTRO_MATERIA}>Materia</Nav.Link>                   
                     <Nav.Link className={classItem}>Horario</Nav.Link>                   
                     <Nav.Link className={classItem} eventKey = {MAESTRO_PROFESOR}>Profesor</Nav.Link>                   
-                    <Nav.Link className={classItem}>Aula</Nav.Link>                   
-                    <Nav.Link className={classItem}>Cuatrimestre</Nav.Link>                                       
+                    <Nav.Link className={classItem} eventKey = {MAESTRO_AULA}>Aula</Nav.Link>                   
+                    {/* <Nav.Link className={classItem}>Cuatrimestre</Nav.Link>                                        */}
                 </SubMenuLateral>  
 
                 <SubMenuLateral
