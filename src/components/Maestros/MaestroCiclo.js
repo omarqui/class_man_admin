@@ -4,6 +4,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import datosFactory from '../../constants/datos';
 import Select from 'react-select';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
 
 const datosAll = datosFactory.getInstance();
 const datos = datosAll.ciclos;
@@ -61,11 +63,7 @@ class MaestroCiclo extends Component{
                     <Col md={6}>
                         <Form.Group controlId="formSelect">
                             <Form.Label>Fecha Inicio</Form.Label>
-                            <Select 
-                                value={optionsMeses.find((mes)=>mes.value === itemSelected.mesIni)} 
-                                options={optionsMeses} 
-                                isDisabled = { esModoConsulta } 
-                                onChange = { (o)=>onSelectChanged(o, "mesIni")  }/>
+                            <DayPickerInput onDayChange={(day)=>{alert(day);}} />
                         </Form.Group>
                     </Col>
                     <Col md={6}>
