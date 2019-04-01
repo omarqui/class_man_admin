@@ -12,9 +12,9 @@ import { faIgloo, faPenAlt, faBook, faHourglassHalf,
          faAngleDown, faAngleUp, faPlus, faPencilAlt,
          faTrash, faSearch, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';         
 import { MaestroProfesor, MaestroMateria, MaestroCiclo,
-         MaestroCarrera, MaestroPensum } from '../Maestros/';
+         MaestroCarrera, MaestroPensum, MaestroPeriodo} from '../Maestros/';
 import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_AULA,
-         MAESTRO_CARRERA, MAESTRO_PENSUM } from "../../constants/forms";
+         MAESTRO_CARRERA, MAESTRO_PENSUM, MAESTRO_PERIODO } from "../../constants/forms";
 
 library.add(faIgloo, faPenAlt, faBook, faHourglassHalf, 
             faAngleDown, faAngleUp, faPlus, faPencilAlt,
@@ -55,6 +55,9 @@ class App extends Component {
         break;
       case MAESTRO_PENSUM:
         form = <MaestroPensum />;
+        break;   
+      case MAESTRO_PERIODO:
+        form = <MaestroPeriodo />;
         break;        
       default:
         break;

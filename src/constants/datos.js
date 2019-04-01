@@ -220,12 +220,43 @@ const materias = [
       }
   ];
 
+  const periodos = [
+    {
+      id: 1,
+      mesIni: 1,
+      mesFin: 4,
+      descripcion: "Ene-Abr"
+    },{
+      id: 2,
+      mesIni: 5,
+      mesFin: 8,
+      descripcion: "May-Ago"
+    }
+  ];
+
+  const meses = [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre"
+  ];
+
   let datos = {    
     carreras,
     aulas,
     materias,
     profesores,
-    pensums
+    pensums,
+    periodos,
+    meses
   };
 
 
