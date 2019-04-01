@@ -1,191 +1,108 @@
 import React, { Component } from 'react';
-import { Form, Button, ListGroup, Row, Col } from 'react-bootstrap';
+import MaestroGenerico from '../MaestroGenerico/MaestroGenerico';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PanelListaCompact from '../MaestroGenerico/PanelListaCompact';
-import PanelDetalleCompact from '../MaestroGenerico/PanelDetalleCompact';
-import estados from '../../constants';
-import { Maestro } from '../MaestroGenerico/Maestro';
 import datosFactory from '../../constants/datos';
-
-const [ CREANDO, EDITANDO, CONSULTANDO ] = estados;
+import Select from 'react-select';
 
 const datosAll = datosFactory.getInstance();
-const datos = datosAll.aulas;
+const datos = datosAll.ciclos;
 
-let lastSelect = null;
+let optionsMeses;
 
 class MaestroCiclo extends Component{
-    constructor (prop){
-        super(prop);
-        
-        this.state = {
-          data: datos,
-          selected: null,
-          estado: CONSULTANDO
-        };
-
-        this.nuevo = this.nuevo.bind(this);
-        this.editar = this.editar.bind(this);
-        this.cancelar = this.cancelar.bind(this);
-        this.guardar = this.guardar.bind(this);
-        this.onTextChanged = this.onTextChanged.bind(this);
-        this.buscar = this.buscar.bind(this);
+    constructor(props){
+        super(props);   
+        optionsMeses = datosAll.meses.map((mes,index)=>{
+            return {
+                value: index+1,
+                label: mes
+            };
+        });
     }
 
-    seleccionarItem(item){      
-      return () => {
-        console.log(item);
-        lastSelect = item;
-
-        this.setState({
-          selected: item,
-          estado: CONSULTANDO
-        });        
-      };
+    getNewObject(){
+        return {
+            id: null,
+            fechaIni: null,
+            fechaFin: null,
+            estaAbierto: 1
+        };        
     }
 
-    nuevo(){
-      const newItem = { id: null, descripcion: "" };      
-
-      this.setState({
-        selected: newItem,
-        estado: CREANDO
-      });
+    filter(busqueda){
+        return i=>i.descripcion.toLowerCase().includes(busqueda);
     }
 
-    editar(){
-      this.setState({
-        estado: EDITANDO
-      });
-    }
-
-    cancelar(){
-      this.setState({
-        estado: CONSULTANDO,
-        selected: lastSelect
-      });
-    }
-
-    guardar(item){
-      return ()=>{
-        const newData = [ ...this.state.data ];
-        if(this.state.estado === CREANDO){
-          newData.push(item);
-          datos.push(item);
-        }          
-        else{
-          const indice = newData.findIndex(i=>i.id === item.id);
-
-          newData[indice] = item;
-          datos[indice] = item;
-        }
-  
-        this.setState({
-          data: newData
-        });           
-
-        this.cancelar();
-        this.seleccionarItem(item);        
-      };      
-    }
-
-    buscar(event){                  
-      const busqueda = event.target.value.toLowerCase();
-      const newData = datos.filter(i=>i.descripcion.toLowerCase().includes(busqueda));
-
-      this.setState({
-        data: newData
-      });
-    }
-
-    onTextChanged(event, field){
-        const newSeleted = {...this.state.selected, [field]: event.target.value};
-        this.setState({
-          selected: newSeleted
-        });      
-    }
-     
-    render(){
-        const { data, selected, estado } = this.state;        
-
-        console.log("Maestro ciclo",datosAll);
-        
+    getListItem(i){
         return(
+            <div>
+                <p className="m-0"><strong>{i.descripcion}</strong></p>
+                <small >{i.id}</small>
+            </div>            
+        );
+    }
 
-          <Maestro titulo="Ciclos" estado={estado} >
-            <Row>
-              <Col xs={6} md={5} lg={4}>
-                <PanelListaCompact 
-                    titulo="Lista" 
-                    nuevoHandler={this.nuevo} 
-                    estado={estado}
-                    buscarHandler={this.buscar}>
-                  <ListGroup className="list_group" >
-                    {data.map(i => {
-                       return <ListGroup.Item 
-                                  action href={"#link"+i.id} 
-                                  onClick={this.seleccionarItem(i)}
-                                  onDoubleClick={this.editar}
-                                  disabled={estado !== CONSULTANDO}
-                                  key={i.id}>
-                                <p className="m-0"><strong>{i.descripcion}</strong></p>
-                                <small >{i.id}</small>
-                              </ListGroup.Item>;
-                    })}                                        
-                  </ListGroup>
-                </PanelListaCompact>
-              </Col>
-              <Col>
-                <PanelDetalleCompact titulo="Detalle" editarHandler={this.editar} estado={estado} isItemSelected={selected !== null}>
-                    {selected &&
-                      <>
-                        {selected.id && 
-                          <Row>
-                              <Col md={3}>
-                                  <Form.Group controlId="formID">
-                                      <Form.Label>Codigo</Form.Label>
-                                      <Form.Control type="text" placeholder="Codigo" disabled value={selected.id} />
-                                  </Form.Group>
-                              </Col>
-                          </Row>
-                        }
+    getFormDetail(itemSelected, onTextChanged, onSelectChanged, esModoConsulta){
+        return(
+            <div>
+                {itemSelected.id && 
+                    <Row>
+                        <Col md={3}>
+                            <Form.Group controlId="formID">
+                                <Form.Label>Codigo</Form.Label>
+                                <Form.Control type="text" placeholder="Codigo" disabled value={itemSelected.id} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                }
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Descripción</Form.Label>
-                            <Form.Control 
-                              type="Text" 
-                              placeholder="Descripcion" 
-                              disabled = {estado === CONSULTANDO} 
-                              value={selected.descripcion}
-                              onChange={(e)=>this.onTextChanged(e,"descripcion")}/>
+                <Row>
+                    <Col md={6}>
+                        <Form.Group controlId="formSelect">
+                            <Form.Label>Fecha Inicio</Form.Label>
+                            <Select 
+                                value={optionsMeses.find((mes)=>mes.value === itemSelected.mesIni)} 
+                                options={optionsMeses} 
+                                isDisabled = { esModoConsulta } 
+                                onChange = { (o)=>onSelectChanged(o, "mesIni")  }/>
                         </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                        <Form.Group controlId="formSelect">
+                            <Form.Label>Fecha Fin</Form.Label>
+                            <Select 
+                                value={optionsMeses.find((mes)=>mes.value === itemSelected.mesFin)} 
+                                options={optionsMeses} 
+                                isDisabled = { esModoConsulta } 
+                                onChange = { (o)=>onSelectChanged(o, "mesFin")  }/>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Form.Group controlId="formSelectEstado">
+                    <Form.Label>Estado</Form.Label>
+                    <Select 
+                        value={optionsMeses.find((mes)=>mes.value === itemSelected.mesFin)} 
+                        options={optionsMeses} 
+                        isDisabled = { esModoConsulta } 
+                        onChange = { (o)=>onSelectChanged(o, "mesFin")  }/>
+                </Form.Group>            
+              </div>
+        );
+    }
 
-                        <Button 
-                            style={{float: "right"}} 
-                            variant="primary" 
-                            type="submit" 
-                            className="ml-2"
-                            disabled={ estado === CONSULTANDO }
-                            onClick={this.guardar(selected)}>                   
-                            <FontAwesomeIcon icon="save" /> Guardar
-                        </Button>
-                        <Button 
-                            style={{float: "right"}} 
-                            variant="danger" 
-                            type="submit" 
-                            hidden={ estado === CONSULTANDO }
-                            onClick={this.cancelar}>                   
-                            <FontAwesomeIcon icon="times" /> Cancelar
-                        </Button>
-                      </>
-                    }
-                </PanelDetalleCompact>
-              </Col>
-            </Row>
-          </Maestro>
+    render(){
+        return(
+            <MaestroGenerico 
+                titulo = "Ciclo" 
+                data = { datos }
+                getNewObject = { this.getNewObject }
+                getFilterCondicion = { this.filter }
+                getListItem = { this.getListItem }
+                getFormDetail = { this.getFormDetail }
+                guardarHandler = { this.guardar }/>
         );
     }
 }
-
 
 export default MaestroCiclo;

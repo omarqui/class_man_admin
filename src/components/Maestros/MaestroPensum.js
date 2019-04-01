@@ -65,10 +65,7 @@ class MaestroPensum extends Component{
     
 
     getFormDetail(itemSelected, onTextChanged, onSelectChanged, esModoConsulta){
-        const agregarCiclos = (thisOrig, field, cant)=>{
-            console.log(thisOrig);
-            console.log(cant);
-            
+        const agregarCiclos = (thisOrig, field, cant)=>{            
             const item = {...thisOrig.state.selected, [field]:cant };
 
             for (let cicloPosicion = thisOrig.state.selected.ciclos.length + 1; cicloPosicion <= cant ; cicloPosicion++) {            

@@ -285,6 +285,37 @@ const materias = [
     }
   ];
 
+  const ciclos = [
+    {
+      id: 1,
+      fechaIni: {
+        year: 2018,
+        month: 9,
+        day:15
+      },
+      fechaFin: {
+        year: 2018,
+        month: 12,
+        day:23
+      },
+      estaAbierto: 0
+    },
+    {
+      id: 2,
+      fechaIni: {
+        year: 2019,
+        month: 1,
+        day:15
+      },
+      fechaFin: {
+        year: 2019,
+        month: 4,
+        day:23
+      },
+      estaAbierto: 1
+    }
+  ];
+
   let datos = {    
     carreras,
     aulas,
@@ -293,7 +324,8 @@ const materias = [
     pensums,
     periodos,
     meses,
-    horarios
+    horarios,
+    ciclos
   };
 
 
