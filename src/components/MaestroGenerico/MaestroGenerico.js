@@ -149,7 +149,7 @@ class MaestroGenerico extends Component{
                     {
                       (selected || estado === CREANDO) &&
                         
-                      getFormDetail(selected, this.onTextChanged, this.onSelectChanged, estado === CONSULTANDO)
+                      getFormDetail(selected, this.onTextChanged, this.onSelectChanged, estado === CONSULTANDO, this)
                     }
 
                     <Button            
