@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Nav } from 'react-bootstrap';
 import SubMenuLateral from './SubMenuLateral';
 import { MAESTRO_MATERIA, MAESTRO_PROFESOR, MAESTRO_AULA,
-         MAESTRO_CARRERA, MAESTRO_PENSUM, MAESTRO_PERIODO} from "../../constants/forms";
+         MAESTRO_CARRERA, MAESTRO_PENSUM, MAESTRO_PERIODO,
+         MAESTRO_HORARIO} from "../../constants/forms";
 
 class MenuLateral extends Component{
     constructor (prop){
@@ -31,7 +32,7 @@ class MenuLateral extends Component{
                     <Nav.Link className={classItem} eventKey = {MAESTRO_PROFESOR}>Profesor</Nav.Link>                   
                     <Nav.Link className={classItem} eventKey = {MAESTRO_PENSUM}>Pensum</Nav.Link>
                     
-                    <Nav.Link className={classItem}>Horario</Nav.Link>                                       
+                    <Nav.Link className={classItem} eventKey = {MAESTRO_HORARIO}>Horario</Nav.Link>                                       
                     <Nav.Link className={classItem} eventKey = {MAESTRO_AULA}>Aula</Nav.Link>                   
                     <Nav.Link className={classItem} eventKey = {MAESTRO_PERIODO}>Periodos</Nav.Link>                   
                     {/* <Nav.Link className={classItem}>Cuatrimestre</Nav.Link>                                        */}

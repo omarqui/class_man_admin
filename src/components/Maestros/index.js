@@ -4,6 +4,7 @@ import MaestroProfesor from './MaestroProfesor';
 import MaestroCarrera from './MaestroCarrera';
 import MaestroPensum from './MaestroPensum';
 import MaestroPeriodo from './MaestroPeriodo';
+import MaestroHorario from './MaestroHorario';
 
 export { 
     MaestroCiclo, 
@@ -11,5 +12,6 @@ export {
     MaestroProfesor,
     MaestroCarrera,
     MaestroPensum,
-    MaestroPeriodo
+    MaestroPeriodo,
+    MaestroHorario
 };

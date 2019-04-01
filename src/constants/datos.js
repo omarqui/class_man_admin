@@ -249,6 +249,42 @@ const materias = [
     "diciembre"
   ];
 
+  const horarios = [
+    {
+      id: 1,
+      horaIni:{
+        hora:18,
+        minuto:10
+      },
+      horaFin:{
+        hora:19,
+        minuto:0
+      }
+    },
+    {
+      id: 2,
+      horaIni:{
+        hora:19,
+        minuto:0
+      },
+      horaFin:{
+        hora:19,
+        minuto:50
+      }
+    },
+    {
+      id: 3,
+      horaIni:{
+        hora:19,
+        minuto:50
+      },
+      horaFin:{
+        hora:20,
+        minuto:40
+      }
+    }
+  ];
+
   let datos = {    
     carreras,
     aulas,
@@ -256,7 +292,8 @@ const materias = [
     profesores,
     pensums,
     periodos,
-    meses
+    meses,
+    horarios
   };
 
 
@@ -269,8 +306,7 @@ const materias = [
     var instance;
     return {
         getInstance: ()=>{
-            if (instance == null) {
-                console.log("new instance");
+            if (instance == null) {                
                 instance = new SingletonClass();
                 // Hide the constructor so the returned object can't be new'd...
                 instance.constructor = null;
